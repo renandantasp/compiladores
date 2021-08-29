@@ -81,19 +81,6 @@ class Gramatica(Lexer):
     ABREPAR = 10
     FECHAPAR = 11
 
-    token_label = {     1:'palavra_chave',
-                        2:'NUMINT',
-                        3:'IDENT',
-                        4:'CADEIA',
-                        5:'COMENTARIO',
-                        6:'WS',
-                        7:'OP_EL',
-                        8:'OP_ARIT',
-                        9:'DELIM',
-                        10:'ABREPAR',
-                        11:'FECHAPAR',               
-                                }
-
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
 
     modeNames = [ "DEFAULT_MODE" ]
