@@ -33,7 +33,6 @@ def main(argv):
         while t.type != Token.EOF:
             if t.type in [1,2,10,11,13,14]: #Regras para tokens proprios 
                 f.write('<\'' + t.text + '\',\'' + t.text + '\'>\n')
-                #print('<\'' + t.text + '\',\'' + t.text + '\'>')
                 
             elif t.type == 15:#procura por simbolos que nao foram definidos
                 f.write('Linha ' + str(t.line) + ': ' + str(t.text) + ' - simbolo nao identificado\n')
