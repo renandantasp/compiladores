@@ -8,15 +8,15 @@ PALAVRA_CHAVE
 TIPO : 'inteiro' | 'literal' | 'real' | 'logico'
     ;
 
-CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\') )* '"'
+CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\'|'\n'|'\r') )* '"'
     ;
-CAD_ABERTA 	: '"' ~('"')* ('\n'|'\r')   
+CAD_ABERTA 	: '"' ~('"')* ('\n'|'\r')?   
     ;
 
 fragment
 ESC_SEQ	: '\\\'';
 COMENTARIO
-    :   '{' ~('\n'|'\r')* '\r'? '}' -> skip;
+    :   '{' ~('\n'|'\r'|'}')* '\r'? '}' -> skip;
 COMENT_ABERTO : '{' ~('}')*;
 
 WS  :   ( ' '
@@ -43,4 +43,5 @@ SIMBOLO	:	':' | ',' | '.'
 	;
 ESCOPO :	'(' | ')' | '[' | ']'
 	;
+Erro : . ;
 

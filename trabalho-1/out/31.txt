@@ -7,26 +7,4 @@
 <'abastecimento2',IDENT>
 <':',':'>
 <'real','real'>
-<'leia','leia'>
-<'(','('>
-<'quilometragem',IDENT>
-<')',')'>
-<'leia','leia'>
-<'(','('>
-<'abastecimento1',IDENT>
-<',',','>
-<'abastecimento2',IDENT>
-<')',')'>
-<'escreva','escreva'>
-<'(','('>
-<'quilometragem',IDENT>
-<'/','/'>
-<'(','('>
-<'abastecimento1',IDENT>
-<'+','+'>
-<'abastecimento2',IDENT>
-<')',')'>
-<',',','>
-<'" km/l"',CADEIA>
-<')',')'>
-<'fim_algoritmo','fim_algoritmo'>
+Linha 7: } - simbolo nao identificado

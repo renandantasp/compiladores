@@ -109,15 +109,4 @@
 <'2',NUM_INT>
 <')',')'>
 <')',')'>
-<'{ comparação e resultado 
-	se distancia1 < distancia2 entao
-		escreva("O primeiro ponto eh o mais proximo")
-	senao
-		se distancia2 < distancia1 entao
-			escreva("O segundo ponto eh o mais proximo")
-		senao
-			escreva("Os pontos equidistam da origem")
-		fim_se
-	fim_se
-fim_algoritmo
-',COMENT_ABERTO>
+Linha 20: comentario nao fechado

@@ -8,6 +8,7 @@ def main(argv):
         #print(argv[2])
         entrada = FileStream(argv[1],"utf-8")
         lex = Gramatica(entrada)
+        lex.removeErrorListeners()
         lex.token_label = {
                     1:'PALAVRA_CHAVE', #
                     2:'TIPO', #
@@ -33,11 +34,27 @@ def main(argv):
         while t.type != Token.EOF:
             if t.type in [1,2,10,11,13,14]:
                 f.write('<\'' + t.text + '\',\'' + t.text + '\'>\n')
+                print('-')
                 #print('<\'' + t.text + '\',\'' + t.text + '\'>')
+            elif t.type == 15:
+                f.write('Linha ' + str(t.line) + ': ' + str(t.text) + ' - simbolo nao identificado\n')
+                f.close()
+                break
+            elif t.type == 6:
+            	f.write('Linha ' + str(t.line) + ': comentario nao fechado\n')
+            	f.close()
+            	break
+            elif t.type == 4:
+                f.write('Linha ' + str(t.line) + ': cadeia literal nao fechada\n')
+                f.close()
+                break
             else:
+                print('-')
                 f.write('<\'' + t.text + '\',' + lex.token_label[t.type] + '>\n')
                 #print('<\'' + t.text + ',\'' + lex.token_label[t.type] + '\'>')
+            
             t = lex.nextToken()
+            
         f.close()
         
         

@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/bash
 
 for ((i = 1; i < 37; i++)); do python3 lexer.py entrada/$i.txt out/$i.txt; done
 
