@@ -4,52 +4,45 @@ from Gramatica import Gramatica
 
 
 def main(argv):
-    g = Gramatica()
-    g.token_label = {     1:'PALAVRA_CHAVE',
-                        2:'NUMINT',
-                        3:'IDENT',
-                        4:'CADEIA',
-                        5:'COMENTARIO',
-                        6:'WS',
-                        7:'OP_EL',
-                        8:'OP_ARIT',
-                        9:'DELIM',
-                        10:'ABREPAR',
-                        11:'FECHAPAR',               
-                                }
-                                
-    if len(sys.argv) > 2:
-        inp = FileStream(argv[1],"utf-8")
-        lex = Gramatica(inp)
-        lex.token_label = {     1:'PALAVRA_CHAVE',
-                        2:'NUMINT',
-                        3:'IDENT',
-                        4:'CADEIA',
-                        5:'COMENTARIO',
-                        6:'WS',
-                        7:'OP_EL',
-                        8:'OP_ARIT',
-                        9:'DELIM',
-                        10:'ABREPAR',
-                        11:'FECHAPAR',               
-                                }
+    if len(sys.argv) >= 3:
+        #print(argv[2])
+        entrada = FileStream(argv[1],"utf-8")
+        lex = Gramatica(entrada)
+        lex.token_label = {
+                    1:'PALAVRA_CHAVE', #
+                    2:'TIPO', #
+                    3:'CADEIA',
+                    4:'CAD_ABERTA',
+                    5:'COMENTARIO',
+                    6:'COMENT_ABERTO',
+                    7:'WS',
+                    8:'NUM_INT',
+                    9:'NUM_REAL',
+                    10:'OP', #
+                    11:'OP_LOGIC', #
+                    12:'IDENT',
+                    13:'SIMBOLO', #
+                    14:'ESCOPO' #
+}
+    
         stream = CommonTokenStream(lex)
         t = lex.nextToken()
+        
+       
+        f = open(argv[2],'w')
         while t.type != Token.EOF:
-            if t.type in [1,9,10,11]:
-            	with open(argv[2], 'a') as f:
-            		f.write('<\'' + t.text + '\',\'' + t.text + '\'>')
+            if t.type in [1,2,10,11,13,14]:
+                f.write('<\'' + t.text + '\',\'' + t.text + '\'>\n')
                 #print('<\'' + t.text + '\',\'' + t.text + '\'>')
             else:
-            	with open(argv[2], 'a') as f:
-            		f.write('<\'' + t.text + ',\'' + lex.token_label[t.type] + '\'>')
+                f.write('<\'' + t.text + '\',' + lex.token_label[t.type] + '>\n')
                 #print('<\'' + t.text + ',\'' + lex.token_label[t.type] + '\'>')
             t = lex.nextToken()
-
+        f.close()
         
         
     else:
-        inp = InputStream(sys.stdin.readline())
+        print('Erro: Argumentos inválidos')
 
 
 if __name__ == '__main__':

@@ -1,20 +1,23 @@
 lexer grammar Gramatica;
 
 PALAVRA_CHAVE 
-	:	'algoritmo' | 'declare' | 'leia' | 'escreva' | 'fim_algoritmo' | 'literal' | 'inteiro'; 
+	:	'escreva' | 'leia' | 'fim_algoritmo' | 'algoritmo' |'declare' | 'para' | 'ate' | 'faca' |'fim_para'
+    | 'enquanto' | 'fim_enquanto' |'registro' | 'fim_registro' | 'procedimento' | 'var' | 'fim_procedimento'
+    | 'funcao' | 'fim_funcao' | 'tipo' | 'retorne' | 'constante'; 
 
-NUMINT	: ('+'|'-')?('0'..'9')+;
+TIPO : 'inteiro' | 'literal' | 'real' | 'logico'
+    ;
 
-//NUMREAL	: ('+'|'-')?('0'..'9')+ ('.' ('0'..'9')+)?;
-
-VARIAVEL : ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9')*;
-
-CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\') )* '"';
+CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\') )* '"'
+    ;
+CAD_ABERTA 	: '"' ~('"')* ('\n'|'\r')   
+    ;
 
 fragment
 ESC_SEQ	: '\\\'';
 COMENTARIO
-    :   '{' ~('\n'|'\r')* '\r'? '}\n' -> skip;
+    :   '{' ~('\n'|'\r')* '\r'? '}' -> skip;
+COMENT_ABERTO : '{' ~('}')*;
 
 WS  :   ( ' '
         | '\t'
@@ -22,13 +25,22 @@ WS  :   ( ' '
         | '\n'
         ) -> skip;
     
-OP_REL	:	'>' | '>=' | '<' | '<=' | '<>' | '='
+NUMINT	: ('0'..'9')+;
+
+NUMREAL	: ('0'..'9')+ ('.' ('0'..'9')+)?;
+
+OP	:	'+' | '-' | '/' | '*' | '<-' | '..' | '<>' | '%' |'^' | '&'
 	;
-OP_ARIT	:	'+' | '-' | '*' | '/'
+
+OP_LOGIC : 'e' | 'ou' | 'nao' | '>' | '<' | '=' | '<=' | '>=' | 'se' | 'senao' | 'fim_se' | 'entao' | 'caso' | 'seja' | 'fim_caso'
+    | 'falso'   | 'verdadeiro'
+    ;
+
+IDENT : ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
+
+
+SIMBOLO	:	':' | ',' | '.'
 	;
-DELIM	:	':' | ','
+ESCOPO :	'(' | ')' | '[' | ']'
 	;
-ABREPAR :	'('
-	;
-FECHAPAR:	')'
-	;
+
