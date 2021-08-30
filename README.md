@@ -1,5 +1,5 @@
 # Construção de Compiladores
-Repositório dos trabalhos da disciplina de Construção de Compiladores (1001***) ministrada pelo Lucris 
+Repositório dos trabalhos da disciplina de Construção de Compiladores (1001497) ministrada pelo professor Daniel Lucrédio
 
 ---
 
