@@ -5,7 +5,6 @@ from Gramatica import Gramatica
 
 def main(argv):
     if len(sys.argv) >= 3:
-        #print(argv[2])
         entrada = FileStream(argv[1],"utf-8")
         lex = Gramatica(entrada)
         lex.removeErrorListeners() #remove o verificador de erros pois fazemos as verificaçoes na mao
@@ -40,6 +39,7 @@ def main(argv):
                 f.write('Linha ' + str(t.line) + ': ' + str(t.text) + ' - simbolo nao identificado\n')
                 f.close()
                 break
+
             # Verifica por '{' e '"' nao fechados
             elif t.type == 6:
             	f.write('Linha ' + str(t.line) + ': comentario nao fechado\n')
@@ -51,7 +51,6 @@ def main(argv):
                 break
             else:
                 f.write('<\'' + t.text + '\',' + lex.token_label[t.type] + '>\n')
-                #print('<\'' + t.text + ',\'' + lex.token_label[t.type] + '\'>')
             
             t = lex.nextToken()
             
