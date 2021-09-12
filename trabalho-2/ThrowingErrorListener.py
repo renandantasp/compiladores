@@ -8,6 +8,7 @@ class ThrowingErrorListener(ErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
         t = offendingSymbol.text.replace('<EOF>','EOF')
         token = offendingSymbol.type
+        # Erros apontados pelo analisador lexico
         if token == 64:
             ex = f'Linha {line}: cadeia literal nao fechada\nFim da compilacao\n'
             f = open(self.filename,'w')
@@ -15,7 +16,8 @@ class ThrowingErrorListener(ErrorListener):
             f.close()
             ex = ParseCancellationException(f'Linha {line}: cadeia literal nao fechada\n')
             ex.line = line
-            raise ex
+            raise ex #Sobe sinal de erro de forma a parar a analise do resto do programa
+
         elif token == 66:
            ex = f'Linha {line}: comentario nao fechado\nFim da compilacao\n'
            f = open(self.filename,'w')
@@ -35,6 +37,7 @@ class ThrowingErrorListener(ErrorListener):
             ex.t = t
             raise ex
 
+        # Erros sintaticos
         else:
             ex = f'Linha {line}: erro sintatico proximo a {t}\nFim da compilacao\n'
             f = open(self.filename,'w')
@@ -45,6 +48,5 @@ class ThrowingErrorListener(ErrorListener):
             ex.t = t
             raise ex
 
-        #ex = ParseCancellationException(f'Linha {line}: {column} {msg}')
         
         
