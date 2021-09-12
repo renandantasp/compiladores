@@ -1,0 +1,5 @@
+Linha 16: erro sintatico proximo a " km/l)
+
+fim_algoritmo
+
+Fim da compilacao

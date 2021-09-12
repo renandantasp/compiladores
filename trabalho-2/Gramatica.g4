@@ -1,164 +1,163 @@
-lexer grammar Gramatica;
+grammar Gramatica;
 
 
-PROGRAMA : 
-DECLARACOES 'algoritmo' CORPO 'fim_algoritmo';
+programa : 
+declaracoes 'algoritmo' corpo 'fim_algoritmo';
 
-DECLARACOES : 
-(DECL_LOCAL_GLOBAL)*;
+declaracoes : 
+(decl_local_global)*;
 
-DECL_LOCAL_GLOBAL : 
-DECLARACAO_LOCAL | DECLARACAO_GLOBAL;
+decl_local_global : 
+declaracao_local | declaracao_global;
 
-DECLARACAO_LOCAL : 
-'declare' VARIAVEL |
-'constante' IDENT ':' TIPO_BASICO '=' VALOR_CONSTANTE |
-'TIPO' IDENT ':' TIPO;
+declaracao_local : 
+'declare' variavel |
+'constante' IDENT ':' tipo_basico '=' valor_constante |
+'tipo' IDENT ':' tipo;
 
-VARIAVEL :
-IDENTIFICADOR (',' IDENTIFICADOR)* ':' TIPO;
+variavel :
+identificador (',' identificador)* ':' tipo;
 
-IDENTIFICADOR : 
-IDENT ('.' IDENT)* DIMENSAO;
+identificador : 
+IDENT ('.' IDENT)* dimensao;
 
-DIMENSAO : 
-('[' EXP_ARITMETICA ']')*;
+dimensao : 
+('[' exp_aritmetica ']')*;
 
-TIPO : 
-REGISTRO | TIPO_ESTENDIDO;
+tipo : 
+registro | tipo_estendido;
 
-TIPO_BASICO : 
+tipo_basico : 
 'literal' | 'inteiro' | 'real' | 'logico';
 
-TIPO_BASICO_IDENT : 
-TIPO_BASICO | IDENT;
+tipo_basico_ident : 
+tipo_basico | IDENT;
 
-TIPO_ESTENDIDO : 
-('^')? TIPO_BASICO_IDENT;
+tipo_estendido : 
+('^')? tipo_basico_ident;
 
-VALOR_CONSTANTE :
+valor_constante :
 CADEIA | NUM_INT | NUM_REAL | 'verdadeiro' | 'falso';
 
-REGISTRO:
-'REGISTRO' (VARIAVEL)* 'fim_REGISTRO';
+registro:
+'registro' (variavel)* 'fim_registro';
 
-DECLARACAO_GLOBAL :
-'procedimento' IDENT '(' (PARAMETROS)? ')' (DECLARACAO_LOCAL)* (CMD)* 'fim_procedimento' |
-'funcao' IDENT '(' (PARAMETROS)? ')' ':' TIPO_ESTENDIDO (DECLARACAO_LOCAL)* (CMD)* 'fim_funcao';
+declaracao_global :
+'procedimento' IDENT '(' (parametros)? ')' (declaracao_local)* (cmd)* 'fim_procedimento' |
+'funcao' IDENT '(' (parametros)? ')' ':' tipo_estendido (declaracao_local)* (cmd)* 'fim_funcao';
 
-PARAMETRO : 
-('var')? IDENTIFICADOR (',' IDENTIFICADOR)* ':' TIPO_ESTENDIDO;
+parametro : 
+('var')? identificador (',' identificador)* ':' tipo_estendido;
 
-PARAMETROS :
-PARAMETRO (',' PARAMETRO)*;
+parametros :
+parametro (',' parametro)*;
 
-CORPO :
-(DECLARACAO_LOCAL)* (CMD)*;
+corpo :
+(declaracao_local)* (cmd)*;
 
-CMD :
-CMDLEIA | CMDESCREVA | CMDSE | CMDCASO | CMDPARA | CMDENQUANTO |
-CMDFACA | CMDATRIBUICAO | CMDCHAMADA | CMDRETORNE;
+cmd :
+cmdLeia | cmdEscreva | cmdSe | cmdCaso | cmdPara | cmdEnquanto |
+cmdFaca | cmdAtribuicao | cmdChamada | cmdRetorne;
 
-CMDLEIA :
-'leia' '(' ('^')? IDENTIFICADOR (',' ('^')? IDENTIFICADOR)* ')';
+cmdLeia :
+'leia' '(' ('^')? identificador (',' ('^')? identificador)* ')';
 
-CMDESCREVA :
-'escreva' '(' EXPRESSAO (',' EXPRESSAO)* ')';
+cmdEscreva :
+'escreva' '(' expressao (',' expressao)* ')';
 
-CMDSE :
-'se' EXPRESSAO 'entao' (CMD)* ('senao' (CMD)*)? 'fim_se';
+cmdSe :
+'se' expressao 'entao' (cmd)* ('senao' (cmd)*)? 'fim_se';
 
-CMDCASO :
-'caso' EXP_ARITMETICA 'seja' SELECAO ('senao' (CMD)*)? 'fim_caso';
+cmdCaso :
+'caso' exp_aritmetica 'seja' selecao ('senao' (cmd)*)? 'fim_caso';
 
-CMDPARA :
-'para' IDENT '<-' EXP_ARITMETICA 'ate' EXP_ARITMETICA 'faca' (CMD)* 'fim_para';
+cmdPara :
+'para' IDENT '<-' exp_aritmetica 'ate' exp_aritmetica 'faca' (cmd)* 'fim_para';
 
-CMDENQUANTO :
-'enquanto' EXPRESSAO 'faca' (CMD)* 'fim_enquanto';
+cmdEnquanto :
+'enquanto' expressao 'faca' (cmd)* 'fim_enquanto';
 
-CMDFACA :
-'faca' (CMD)* 'ate' EXPRESSAO;
+cmdFaca :
+'faca' (cmd)* 'ate' expressao;
 
-CMDATRIBUICAO :
-('^')? IDENTIFICADOR '<-' EXPRESSAO;
+cmdAtribuicao :
+('^')? identificador '<-' expressao;
 
-CMDCHAMADA :
-IDENT '(' EXPRESSAO (',' EXPRESSAO)* ')';
+cmdChamada :
+IDENT '(' expressao (',' expressao)* ')';
 
-CMDRETORNE :
-'retorne' EXPRESSAO;
+cmdRetorne :
+'retorne' expressao;
 
-SELECAO :
-(ITEM_SELECAO)*;
+selecao :
+(item_selecao)*;
 
-ITEM_SELECAO :
-CONSTANTES ':' (CMD)*;
+item_selecao :
+constantes ':' (cmd)*;
 
-CONSTANTES :
-NUMERO_INTERVALO (',' NUMERO_INTERVALO)*;
+constantes :
+numero_intervalo (',' numero_intervalo)*;
 
-NUMERO_INTERVALO :
-(OP_UNARIO)? NUM_INT ('..'(OP_UNARIO)? NUM_INT)?;
+numero_intervalo :
+(op_unario)? NUM_INT ('..'(op_unario)? NUM_INT)?;
 
-OP_UNARIO :
+op_unario :
 '-';
 
-EXP_ARITMETICA :
-TERMO (OP1 TERMO)*;
+exp_aritmetica :
+termo (op1 termo)*;
 
-TERMO :
-FATOR (OP2 FATOR)*;
+termo :
+fator (op2 fator)*;
 
-FATOR :
-PARCELA (OP3 PARCELA)*;
+fator :
+parcela (op3 parcela)*;
 
-OP1 :
+op1 :
 '+' | '-';
 
-OP2 :
+op2 :
 '*' | '/';
 
-OP3 :
+op3 :
 '%';
 
-PARCELA :
-(OP_UNARIO)? PARCELA_UNARIO | PARCELA_NAO_UNARIO;
+parcela :
+(op_unario)? parcela_unario | parcela_nao_unario;
 
-PARCELA_UNARIO :
-('^')? IDENTIFICADOR |
-IDENT '(' EXPRESSAO (',' EXPRESSAO)* ')' |
+parcela_unario :
+('^')? identificador |
+IDENT '(' expressao (',' expressao)* ')' |
 NUM_INT |
 NUM_REAL |
-'(' EXPRESSAO ')';
+'(' expressao ')';
 
-PARCELA_NAO_UNARIO :
-'&' IDENTIFICADOR | CADEIA;
+parcela_nao_unario :
+'&' identificador | CADEIA;
 
-EXP_RELACIONAL :
-EXP_ARITMETICA (OP_RELACIONAL EXP_ARITMETICA)?;
+exp_relacional :
+exp_aritmetica (op_relacional exp_aritmetica)?;
 
-OP_RELACIONAL :
+op_relacional :
 '=' | '<>' | '>=' | '<=' | '>' | '<';
 
-EXPRESSAO :
-TERMO_LOGICO (OP_LOGICO_1 TERMO_LOGICO);
+expressao :
+termo_logico (op_logico_1 termo_logico)*;
 
-TERMO_LOGICO :
-FATOR_LOGICO (OP_LOGICO_2 FATOR_LOGICO);
+termo_logico :
+fator_logico (op_logico_2 fator_logico)*;
 
-FATOR_LOGICO :
-('nao')? PARCELA_logica;
+fator_logico :
+('nao')? parcela_logica;
 
-PARCELA_logica:
+parcela_logica:
 ('verdadeiro' | 'falso') |
-EXP_RELACIONAL;
+exp_relacional;
 
-OP_LOGICO_1 :
+op_logico_1 :
 'ou';
 
-
-OP_LOGICO_2:
+op_logico_2:
 'e';
 
 IDENT : 
@@ -169,20 +168,20 @@ NUM_INT	: ('0'..'9')+;
 NUM_REAL	: ('0'..'9')+ ('.' ('0'..'9')+)?;
 
 
-CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\'|'\n'|'\r') )* '"'
-    ;
-CAD_ABERTA 	: '"' ~('"')* ('\n'|'\r')?   
-    ;
+CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\'|'\n'|'\r') )* '"';
+CAD_ABERTA 	: '"' ~('"')* ('\n'|'\r')?;
+
 fragment
 ESC_SEQ	: '\\\'';
 
 COMENTARIO
     :   '{' ~('\n'|'\r'|'}')* '\r'? '}' -> skip;
-COMENT_ABERTO : '{' ~('\n'|'\r'|'}')* '\r'? ~('}');
+COMENT_ABERTO : '{' ~('}')*;
 
 WS  :   ( ' '
         | '\t'
         | '\r'
         | '\n'
         ) -> skip;
-    
+
+Erro : . ;
