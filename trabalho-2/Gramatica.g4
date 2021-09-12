@@ -60,7 +60,7 @@ cmdLeia | cmdEscreva | cmdSe | cmdCaso | cmdPara | cmdEnquanto |
 cmdFaca | cmdAtribuicao | cmdChamada | cmdRetorne;
 
 cmdLeia :
-'leia' '(' ('^')? identificador (',' ('^')? identificador)* ')';
+'leia' '(' identificador (',' identificador)* ')';
 
 cmdEscreva :
 'escreva' '(' expressao (',' expressao)* ')';

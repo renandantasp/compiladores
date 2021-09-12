@@ -1,2 +1,2 @@
-Linha 14: erro sintatico proximo a !
+Linha 14: ! - simbolo nao identificado
 Fim da compilacao

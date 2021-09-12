@@ -1,7 +1,2 @@
-Linha 14: erro sintatico proximo a { resultados 
-	escreva(formato1)
-	escreva(formato2)
-
-fim_algoritmo
-
+Linha 14: comentario nao fechado
 Fim da compilacao

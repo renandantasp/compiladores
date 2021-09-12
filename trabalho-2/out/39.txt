@@ -1,2 +1,2 @@
-Linha 30: erro sintatico proximo a |
+Linha 30: | - simbolo nao identificado
 Fim da compilacao
