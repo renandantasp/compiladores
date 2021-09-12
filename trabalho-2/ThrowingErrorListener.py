@@ -2,7 +2,7 @@ from antlr4.error.ErrorListener import ErrorListener
 from antlr4.error.Errors import ParseCancellationException
 
 class ThrowingErrorListener(ErrorListener):
-    def __init__(self, filename='tmp.txt'):
+    def __init__(self, filename):
         self.filename = filename
     
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
