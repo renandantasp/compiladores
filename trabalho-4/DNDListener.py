@@ -17,24 +17,6 @@ class DNDListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by DNDParser#body.
-    def enterBody(self, ctx:DNDParser.BodyContext):
-        pass
-
-    # Exit a parse tree produced by DNDParser#body.
-    def exitBody(self, ctx:DNDParser.BodyContext):
-        pass
-
-
-    # Enter a parse tree produced by DNDParser#spell.
-    def enterSpell(self, ctx:DNDParser.SpellContext):
-        pass
-
-    # Exit a parse tree produced by DNDParser#spell.
-    def exitSpell(self, ctx:DNDParser.SpellContext):
-        pass
-
-
     # Enter a parse tree produced by DNDParser#tags.
     def enterTags(self, ctx:DNDParser.TagsContext):
         pass
@@ -80,21 +62,21 @@ class DNDListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by DNDParser#damage_tag.
+    def enterDamage_tag(self, ctx:DNDParser.Damage_tagContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#damage_tag.
+    def exitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
+        pass
+
+
     # Enter a parse tree produced by DNDParser#cast_tag.
     def enterCast_tag(self, ctx:DNDParser.Cast_tagContext):
         pass
 
     # Exit a parse tree produced by DNDParser#cast_tag.
     def exitCast_tag(self, ctx:DNDParser.Cast_tagContext):
-        pass
-
-
-    # Enter a parse tree produced by DNDParser#range_tag.
-    def enterRange_tag(self, ctx:DNDParser.Range_tagContext):
-        pass
-
-    # Exit a parse tree produced by DNDParser#range_tag.
-    def exitRange_tag(self, ctx:DNDParser.Range_tagContext):
         pass
 
 

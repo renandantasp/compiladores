@@ -1,18 +1,12 @@
 grammar DND;
 
 program:
-body;
-
-body: 
-(spell)*;
-
-spell: 
-'def' IDENT '{' (tags) '}';
+'def' IDENT '{' tags '}';
 
 tags:
 level_tag  ',' 
 name_tag   ',' 
-school_tag ',' 
+school_tag ','
 descr_tag   ;
 
 level_tag:
@@ -27,11 +21,13 @@ school_tag:
 descr_tag:
 'DESCR' SEP STRING;
 
+damage_tag:
+'DAMAGE' SEP (NUM_INT DICE);
+
 cast_tag:
 'CAST' SEP '(' NUM_INT ',' CAST_TIME ')';
 
-range_tag:
-'RANGE' SEP ((NUM_REAL)? STRING);
+
 
 
 /*============================ LEX RULES ============================*/
@@ -58,11 +54,11 @@ ESC_SEQ	: '\\\'';
 
 // Comentarios e White Space
 
-COMENT :   
-'[' ~('\n'|'\r'|'[')* '\r'? ']' -> skip;
+COMMENT :   
+'%' ~('\n'|'\r')* '\r'? '\n' -> skip;
 
-COMENT_ABERTO : 
-'/*' ~('}')*;
+// COMMENT_ABERTO : 
+// '/*' ~('}')*;
 
 WS  :   
 ( ' ' | '\t' | '\r' | '\n' ) -> skip;
@@ -75,12 +71,16 @@ SEP :
 
 
 CAST_TIME :
-'Action' | 'Reaction' | 'Bonus Action' ;
+'Action' | 'Reaction' | 'Bonus Action' | 'Minute' | 'Hour';
 
 SCHOOL :
 'Abjuration'  | 'Conjuration'   | 'Divination' |
 'Enchantment' | 'Evocation'     | 'Illusion'   |
 'Necromancy'  | 'Transmutation' ;
+
+DICE:
+'D4'  | 'D6'  | 'D8' | 
+'D10' | 'D12' | 'D20';
 
 
 IDENT : 

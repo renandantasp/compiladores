@@ -1,10 +1,12 @@
 import sys
+
 from antlr4 import *
+from antlr4.error.Errors import ParseCancellationException
+
 from DNDLexer    import DNDLexer
 from DNDParser   import DNDParser
-#from DNDVisitor  import DNDVisitor
-
 from DNDSemantic import SemanticAnalyzer
+
 #from DNDGenerator import ObjectGenerator
 
 
@@ -17,7 +19,11 @@ def main(argv):
         stream = CommonTokenStream(lexer)
         parser = DNDParser(stream)
         tree = parser.program()
-        #ast = DNDVisitor().visitPrograma(tree)
+        content = tree.toStringTree(recog=parser)
+        print(content)
+        # sem = SemanticAnalyzer()
+        # simb = sem.visitPrograma(tree)
+        
         
 
         

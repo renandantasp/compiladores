@@ -1,4 +1,4 @@
-[ comentario ]
+% comentario 
 
 def aid {
     LEVEL: 2,
@@ -7,16 +7,16 @@ def aid {
     DESCR: "Your spell bolsters your allies with toughness and resolve"
 }
 
-def acid_arrow {
-    LEVEL: 2,
-    NAME: " Acid Arrow",
-    SCHOOL: Evocation,
-    DESCR: "A shimmering green arrow streaks toward a target"
-}
+%def acid_arrow {
+%    LEVEL: 2,
+%    NAME: " Acid Arrow",
+%    SCHOOL: Evocation,
+%    DESCR: "A shimmering green arrow streaks toward a target"
+%}
 
-def spell {
-    LEVEL: 7,
-    NAME: "Conjure Celestial",
-    SCHOOL: Conjuration ,
-    DESCR: "You summon a celestial of challenge rating 4 or lower"
-}
+%def spell {
+%    LEVEL: 7,
+%    NAME: "Conjure Celestial",
+%    SCHOOL: Conjuration ,
+%    DESCR: "You summon a celestial of challenge rating 4 or lower"
+%}
