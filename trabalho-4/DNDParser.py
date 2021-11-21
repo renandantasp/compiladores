@@ -141,7 +141,6 @@ class DNDParser ( Parser ):
             self.match(DNDParser.IDENT)
             self.state = 18
             self.match(DNDParser.T__1)
-
             self.state = 19
             self.tags()
             self.state = 20

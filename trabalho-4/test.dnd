@@ -1,15 +1,20 @@
-% comentario 
+% verificaçoes semanticas possíveis:
+% - level negativo
+% - def com mesma ident
+% - valor negativo de (outros atributos)
+% - repetição de tags opcionais (?)
+% - sei la n sei mais
 
 def aid {
     LEVEL: 2,
     NAME: "Aid",
-    SCHOOL: Abjuration ,
+    SCHOOL: Abjuration,
     DESCR: "Your spell bolsters your allies with toughness and resolve"
 }
 
 %def acid_arrow {
 %    LEVEL: 2,
-%    NAME: " Acid Arrow",
+%    NAME: "Acid Arrow",
 %    SCHOOL: Evocation,
 %    DESCR: "A shimmering green arrow streaks toward a target"
 %}
