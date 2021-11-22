@@ -8,7 +8,6 @@ class SemanticAnalyzer(DNDVisitor):
         self.scopes = []
         self.actual_scope = ''
         self.table = {}
-        self.valid = True
         self.err = err
 
     def outputHandler(self):
@@ -19,19 +18,20 @@ class SemanticAnalyzer(DNDVisitor):
                 ret[scope][key] = value
         return ret
     
-    def visitProgram(self, ctx:DNDParser.ProgramContext):
+    def visitSpell(self, ctx:DNDParser.SpellContext):
       #'def' IDENT '{' tags '}'
         spell =  str(ctx.IDENT())
+        if spell in self.scopes:
+            self.err.writeError(f"Linha {ctx.start.line}: não pode haver dois spells com mesmo identificador.")
+            return None
         self.scopes.append(spell)
         self.actual_scope = spell
         self.table[spell] = SymbolTable(spell)
- 
-        self.table[spell].symbol['level']  = 0
-        if self.valid:
-            self.visitTags(ctx.tags())
-            if self.err.hasError():
-                return None
-            return self.outputHandler()
+
+        self.visitTags(ctx.tags())
+        if self.err.hasError():
+            return None
+        return self.outputHandler()
 
     
     def visitLevel_tag(self, ctx:DNDParser.Level_tagContext):

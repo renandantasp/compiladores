@@ -17,6 +17,15 @@ class DNDListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by DNDParser#spell.
+    def enterSpell(self, ctx:DNDParser.SpellContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#spell.
+    def exitSpell(self, ctx:DNDParser.SpellContext):
+        pass
+
+
     # Enter a parse tree produced by DNDParser#tags.
     def enterTags(self, ctx:DNDParser.TagsContext):
         pass

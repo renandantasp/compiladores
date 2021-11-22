@@ -14,6 +14,11 @@ class DNDVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by DNDParser#spell.
+    def visitSpell(self, ctx:DNDParser.SpellContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by DNDParser#tags.
     def visitTags(self, ctx:DNDParser.TagsContext):
         return self.visitChildren(ctx)

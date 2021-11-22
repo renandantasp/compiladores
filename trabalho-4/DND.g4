@@ -1,6 +1,9 @@
 grammar DND;
 
 program:
+(spell)*;
+
+spell:
 'def' IDENT '{' tags '}';
 
 tags:
@@ -32,10 +35,7 @@ cast_tag:
 
 /*============================ LEX RULES ============================*/
 
-
 // Variavel, Strings e Valores Numericos
-
-
 NUM_INT	: 
 ('-')? ('0'..'9')+;
 
@@ -52,13 +52,9 @@ fragment
 ESC_SEQ	: '\\\'';
 
 
-// Comentarios e White Space
-
+// Skips
 COMMENT :   
 '%' ~('\n'|'\r')* '\r'? '\n' -> skip;
-
-// COMMENT_ABERTO : 
-// '/*' ~('}')*;
 
 WS  :   
 ( ' ' | '\t' | '\r' | '\n' ) -> skip;
