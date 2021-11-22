@@ -1,7 +1,10 @@
 class SymbolTable:
     def __init__(self, scope):
         self.scope = scope
-        self.symbols = {}
+        self.symbol = {}
+
+    def get_symbols(self):
+        return self.symbol
 
 class ErrorHandler:
     def __init__(self):

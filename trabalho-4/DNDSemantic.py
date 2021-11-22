@@ -5,33 +5,40 @@ from utils import *
 
 class SemanticAnalyzer(DNDVisitor):
     def __init__(self, err:ErrorHandler):
-        self.scopes = {}
-        self.error = ""
+        self.scopes = []
+        self.actual_scope = ''
+        self.table = {}
         self.valid = True
         self.err = err
 
     def outputHandler(self):
-        # spell = self.scopes['spell']
-        # id = spell.symbols['id']
-        # print("spell: " + id)
-        # print(f"\t {id}.level  : {str(spell.symbols['level'])}")
-        # print(f"\t {id}.name   : {str(spell.symbols['name'])}")
-        # print(f"\t {id}.school : {str(spell.symbols['school'])}")
-        # print(f"\t {id}.descr  : {str(spell.symbols['descr'])}")
-        print("cria tabela de simbolo ô buceta.")
-
-        return ':)'
+        tmp = self.table[self.actual_scope]
+        # id = self.actual_scope
+        # print(f"\t {id}.level  : {str(tmp.symbol['level'])}")
+        # print(f"\t {id}.name   : {str(tmp.symbol['name'])}")
+        # print(f"\t {id}.school : {str(tmp.symbol['school'])}")
+        # print(f"\t {id}.descr  : {str(tmp.symbol['descr'])}")
+        return [self.scopes, self.table]
+        #return self.table[self.actual_scope].symbol['level']
+        #return ':)'
     
     def visitProgram(self, ctx:DNDParser.ProgramContext):
       #'def' IDENT '{' tags '}'
-        self.scopes['spell'] = SymbolTable('spell')
-        self.scopes['spell'].symbols['id'] = str(ctx.IDENT())
-        self.scopes['spell'].symbols['level']  = 0
-        self.scopes['spell'].symbols['name']   = ''
-        self.scopes['spell'].symbols['school'] = ''
-        self.scopes['spell'].symbols['descr']  = ''
+        spell =  str(ctx.IDENT())
+        self.scopes.append(spell)
+        self.actual_scope = spell
+        self.table[spell] = SymbolTable(spell)
+ 
+        self.table[spell].symbol['level']  = 0
+        # self.scopes['spell'].symbols['id'] = str(ctx.IDENT())
+        # self.scopes['spell'].symbols['level']  = 0
+        # self.scopes['spell'].symbols['name']   = ''
+        # self.scopes['spell'].symbols['school'] = ''
+        # self.scopes['spell'].symbols['descr']  = ''
         if self.valid:
+
             self.visitTags(ctx.tags())
+
             if self.err.hasError():
                 return None
             return self.outputHandler()
@@ -42,14 +49,14 @@ class SemanticAnalyzer(DNDVisitor):
         if num_int < 1:
             self.err.writeError(f"Linha {ctx.start.line}: valor de level não pode ser menor do que 0.")        
         else:
-            self.scopes['spell'].symbols['level'] = num_int
+            self.table[self.actual_scope].symbol['level'] = num_int
 
     def visitName_tag(self, ctx:DNDParser.Name_tagContext):
-        self.scopes['spell'].symbols['name'] = str(ctx.STRING()).replace("\"", "")
+       self.table[self.actual_scope].symbol['name'] = str(ctx.STRING()).replace("\"", "")
 
 
     def visitSchool_tag(self, ctx:DNDParser.School_tagContext):
-        self.scopes['spell'].symbols['school'] = str(ctx.SCHOOL())
+        self.table[self.actual_scope].symbol['school'] = str(ctx.SCHOOL())
 
     def visitDescr_tag(self, ctx:DNDParser.Descr_tagContext):
-        self.scopes['spell'].symbols['descr'] = str(ctx.STRING()).replace("\"", "")
+        self.table[self.actual_scope].symbol['descr'] = str(ctx.STRING()).replace("\"", "")

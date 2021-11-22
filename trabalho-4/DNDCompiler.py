@@ -27,9 +27,11 @@ def main(argv):
     
     if not err.hasError():
         sem = SemanticAnalyzer(err)
-        simb = sem.visitProgram(tree)
+        scopes, symbols = sem.visitProgram(tree)
         if not err.hasError():
-            print(simb)
+            for scope in scopes:
+                for key, value in symbols[scope].get_symbols().items():
+                    print(key, value)
         #content = tree.toStringTree(recog=parser)
     err.showError()
 
