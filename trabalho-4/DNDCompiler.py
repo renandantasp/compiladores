@@ -6,8 +6,8 @@ from antlr4.error.Errors import ParseCancellationException
 from DNDLexer    import DNDLexer
 from DNDParser   import DNDParser
 from DNDSemantic import SemanticAnalyzer
+from DNDGenerator import PageGenerator
 from utils       import ErrorHandler
-#from DNDGenerator import ObjectGenerator
 
 
 def main(argv):
@@ -27,12 +27,14 @@ def main(argv):
     
     if not err.hasError():
         sem = SemanticAnalyzer(err)
-        scopes, symbols = sem.visitProgram(tree)
+        symbols = sem.visitProgram(tree)
         if not err.hasError():
-            for scope in scopes:
-                for key, value in symbols[scope].get_symbols().items():
-                    print(key, value)
-        #content = tree.toStringTree(recog=parser)
+            if len(argv) >= 3:
+                pg_gen = PageGenerator(symbols, argv[2])
+            else:
+                pg_gen = PageGenerator(symbols,"result")
+
+            pg_gen.createPage()
     err.showError()
 
 
