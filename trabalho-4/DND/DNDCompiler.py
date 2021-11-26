@@ -56,17 +56,18 @@ def main(argv):
 
             pg_gen.createPage()
     
-    error = err.showError()
-    if len(argv) >=3:
-        if not os.path.isdir(argv[2]):
-            os.mkdir(argv[2])
-        with open(f"{argv[2]}/error_log.txt", "w") as f:
-            f.write(error)
-    else:
-        if not os.path.isdir("result"):
-            os.mkdir("result")
-        with open(f"result/error_log.txt", "w") as f:
-            f.write(error) 
+    if err.hasError():
+        error = err.showError()
+        if len(argv) >=3:
+            if not os.path.isdir(argv[2]):
+                os.mkdir(argv[2])
+            with open(f"{argv[2]}/error_log.txt", "w") as f:
+                f.write(error)
+        else:
+            if not os.path.isdir("result"):
+                os.mkdir("result")
+            with open(f"result/error_log.txt", "w") as f:
+                f.write(error) 
 
 
 if __name__ == '__main__':
