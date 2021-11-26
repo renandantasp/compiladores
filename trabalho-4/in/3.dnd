@@ -1,0 +1,6 @@
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet."
+    LEVEL: 3,
+    SCHOOL: Abjuration
+}

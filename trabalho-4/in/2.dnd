@@ -1,0 +1,14 @@
+decl:
+int a = 2;
+int b = 4;
+school c = "c";
+b = a;
+b = 3;
+c = "2";
+
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet.",
+    LEVEL: b,
+    SCHOOL: c
+}

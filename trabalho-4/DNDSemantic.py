@@ -3,6 +3,8 @@ from DNDParser import DNDParser
 from DNDVisitor  import DNDVisitor
 from utils import *
 
+
+
 class SemanticAnalyzer(DNDVisitor):
     def __init__(self, err:ErrorHandler):
         self.scopes = []
@@ -17,13 +19,13 @@ class SemanticAnalyzer(DNDVisitor):
             ret[scope] = {}
             for key, value in self.table[scope].symbol.items():
                 ret[scope][key] = value
-        for _, content in ret.items():
-            for key, value in content.items():
-                if key =='dmg_type':
-                    print(key,'\t:', value)
-                else:
-                    print(key,'\t\t:', value)
-            print("\n")
+        # for _, content in ret.items():
+        #     for key, value in content.items():
+        #         if key =='dmg_type':
+        #             print(key,'\t:', value)
+        #         else:
+        #             print(key,'\t\t:', value)
+        #     print("\n")
         return ret
 
 
@@ -41,21 +43,54 @@ class SemanticAnalyzer(DNDVisitor):
             return -2
 
     def visitDecl(self, ctx:DNDParser.DeclContext):
-        if str(ctx.IDENT()) in self.variables.keys():
-            self.err.writeError(f"Linha {ctx.start.line}: não pode haver duas variaveis com o mesmo nome.")
-        else:
-            if str(ctx.DECL_TYPE()) != 'int':
-                if ctx.STRING():
-                    self.variables[str(ctx.IDENT())] = { 'type' : str(ctx.DECL_TYPE()),
-                                                        'value': str(ctx.STRING()).replace("\"", "")}
-                else:
-                    self.err.writeError(f"Linha {ctx.start.line}: variaveis do tipo {str(ctx.DECL_TYPE())} não podem receber valores inteiros.")
+        if ctx.DECL_TYPE():
+            if str(ctx.IDENT(0)) in self.variables.keys():
+                self.err.writeError(f"Linha {ctx.start.line}: não pode haver duas variaveis com o mesmo nome.")
             else:
-                try:
-                    self.variables[str(ctx.IDENT())] = {  'type' : str(ctx.DECL_TYPE()),
-                                                        'value': int(str(ctx.NUM_INT()))}
-                except:
-                    self.err.writeError(f"Linha {ctx.start.line}: variaveis inteiras não podem receber string.")
+                if str(ctx.DECL_TYPE()) != 'int':
+                    if ctx.STRING():
+                        self.variables[str(ctx.IDENT(0))] = { 'type' : str(ctx.DECL_TYPE()),
+                                                            'value': str(ctx.STRING()).replace("\"", "")}
+                    else:
+                        self.err.writeError(f"Linha {ctx.start.line}: variaveis do tipo {str(ctx.DECL_TYPE())} não podem receber valores inteiros.")
+                else:
+                    try:
+                        self.variables[str(ctx.IDENT(0))] = {  'type' : str(ctx.DECL_TYPE()),
+                                                            'value': int(str(ctx.NUM_INT()))}
+                    except:
+                        self.err.writeError(f"Linha {ctx.start.line}: variaveis inteiras não podem receber string.")
+        else:
+            mod = 0
+            v1 = str(ctx.IDENT(0))
+            if v1 not in self.variables.keys():
+                self.err.writeError(f"Linha {ctx.start.line}: a variavel '{v1}' não existe.")
+                mod = 1
+            if ctx.IDENT(1):
+                v2 = str(ctx.IDENT(1))
+                if v2 not in self.variables.keys():
+                    self.err.writeError(f"Linha {ctx.start.line}: a variavel '{v2}' não existe.")
+                    return
+                if self.variables[v1]['type'] == self.variables[v2]['type']:
+                    self.variables[v1]['value'] = self.variables[v2]['value']
+                    return
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: as variaveis '{str(ctx.IDENT(0))}' e '{str(ctx.IDENT(1))}' não são do mesmo tipo.")
+                    return
+            if mod == 1:
+                return
+            elif ctx.STRING():
+                if self.variables[v1]['type'] in ['text','school']:
+                    self.variables[v1]['value'] = str(ctx.STRING()).replace("\"","")
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: a variavel '{str(ctx.IDENT(0))}' espera um valor do tipo 'text' ou 'school'.")
+            elif ctx.NUM_INT():
+                if self.variables[v1]['type'] in ['int']:
+                    self.variables[v1]['value'] = int(str(ctx.NUM_INT()))
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: a variavel '{str(ctx.IDENT(0))}' espera um valor do tipo 'int'.")
+                
+                
+
 
 
         # print(self.variables)
@@ -149,7 +184,7 @@ class SemanticAnalyzer(DNDVisitor):
             self.err.writeError(f"Linha {ctx.start.line}: tag DAMAGE já foi inserida.")
             return
         if ctx.NUM_INT():
-            self.table[self.actual_scope].symbol['damage'] = str(ctx.NUM_INT()) + str(ctx.DICE())
+            self.table[self.actual_scope].symbol['damage'] = str(ctx.NUM_INT()) + ' ' + str(ctx.DICE())
         else:
             varname = str(ctx.IDENT())
             ret = self.verifyVar(varname,'int')

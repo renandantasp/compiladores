@@ -1,13 +1,14 @@
 grammar DND;
 
 program:
-(declaracao) (spell)*;
+(declaracao)? (spell)*;
 
 declaracao:
-'decl:' (decl)* | ;
+'decl:' (decl)* ;
 
 decl:
-DECL_TYPE   IDENT '=' (STRING | NUM_INT)  ';' ;
+DECL_TYPE   IDENT '=' (STRING | NUM_INT)  ';' |
+IDENT '=' (IDENT | STRING | NUM_INT) ';';
 
 spell:
 'def' IDENT '{' tags  '}';

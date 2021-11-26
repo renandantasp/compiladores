@@ -45,8 +45,19 @@ class PageGenerator:
             opt = ""
             quant_opt = 0
             for atr, value in symbol.items():
-                if atr == 'level' or atr == 'name' or atr == 'school':
+                if  atr == 'name' or atr == 'school':
                     spell = spell.replace(f"#{atr.upper()}#", str(value))
+                elif atr == 'level':
+                    val = str(value)
+                    if val == '1':
+                        val = val + 'st'
+                    elif val == '2':
+                        val = val + 'nd'
+                    elif val == '3':
+                        val = val + 'rd'
+                    else:
+                        val = val + 'th'
+                    spell = spell.replace(f"#{atr.upper()}#", val)
                 elif atr == 'cast':
                     quant_opt = quant_opt + 1
                     copy = opt_tag
@@ -64,8 +75,9 @@ class PageGenerator:
                     opt = opt + copy
                 elif atr == 'comp':
                     quant_opt = quant_opt + 1
+                    val = str(value).replace("(","<i>(").replace(")",")</i>")
                     copy = opt_tag
-                    copy = copy.replace("TAG", "COMPONENTS").replace("$VALUE$", str(value))
+                    copy = copy.replace("TAG", "COMPONENTS").replace("$VALUE$", val)
                     opt = opt + copy
                 if quant_opt == 1:
                     opt = opt + bl
