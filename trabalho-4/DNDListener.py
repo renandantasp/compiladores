@@ -17,6 +17,24 @@ class DNDListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by DNDParser#declaracao.
+    def enterDeclaracao(self, ctx:DNDParser.DeclaracaoContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#declaracao.
+    def exitDeclaracao(self, ctx:DNDParser.DeclaracaoContext):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#decl.
+    def enterDecl(self, ctx:DNDParser.DeclContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#decl.
+    def exitDecl(self, ctx:DNDParser.DeclContext):
+        pass
+
+
     # Enter a parse tree produced by DNDParser#spell.
     def enterSpell(self, ctx:DNDParser.SpellContext):
         pass
@@ -77,15 +95,6 @@ class DNDListener(ParseTreeListener):
 
     # Exit a parse tree produced by DNDParser#damage_tag.
     def exitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
-        pass
-
-
-    # Enter a parse tree produced by DNDParser#cast_tag.
-    def enterCast_tag(self, ctx:DNDParser.Cast_tagContext):
-        pass
-
-    # Exit a parse tree produced by DNDParser#cast_tag.
-    def exitCast_tag(self, ctx:DNDParser.Cast_tagContext):
         pass
 
 

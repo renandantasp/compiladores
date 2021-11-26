@@ -8,18 +8,52 @@ class SemanticAnalyzer(DNDVisitor):
         self.scopes = []
         self.actual_scope = ''
         self.table = {}
+        self.variables = {}
         self.err = err
 
     def outputHandler(self):
-        ret = {}
+        ret = {}            
         for scope in self.scopes:
             ret[scope] = {}
             for key, value in self.table[scope].symbol.items():
                 ret[scope][key] = value
         return ret
     
+   # def visitDeclaracao(self, ctx:DNDParser.DeclaracaoContext):
+   #     self.actual_scope = 'decl'
+   #     self.scopes.append('decl')
+        
+   #     self.table['decl'] = SymbolTable('decl')
+   #     return self.visitChildren(ctx)
+        #print(ctx.decl()
+        #self.visitDecl(ctx.decl())
+        # if self.err.hasError():
+        #     return None
+
+
+    def visitDecl(self, ctx:DNDParser.DeclContext):
+        if str(ctx.IDENT()) in self.variables.keys():
+            self.err.writeError(f"Linha {ctx.start.line}: não pode haver duas variaveis com o mesmo nome.")
+        else:
+            if str(ctx.DECL_TYPE()) != 'int':
+                if ctx.STRING():
+                    self.variables[str(ctx.IDENT())] = { 'type' : str(ctx.DECL_TYPE()),
+                                                        'value': str(ctx.STRING()).replace("\"", "")}
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: variaveis do tipo {str(ctx.DECL_TYPE())} não podem receber valores inteiros.")
+            else:
+                try:
+                    self.variables[str(ctx.IDENT())] = {  'type' : str(ctx.DECL_TYPE()),
+                                                        'value': int(str(ctx.NUM_INT()))}
+                except:
+                    self.err.writeError(f"Linha {ctx.start.line}: variaveis inteiras não podem receber string.")
+
+
+        # print(self.variables)
+    
     def visitSpell(self, ctx:DNDParser.SpellContext):
       #'def' IDENT '{' tags '}'
+        
         spell =  str(ctx.IDENT())
         if spell in self.scopes:
             self.err.writeError(f"Linha {ctx.start.line}: não pode haver dois spells com mesmo identificador.")
@@ -31,12 +65,25 @@ class SemanticAnalyzer(DNDVisitor):
         self.visitTags(ctx.tags())
         if self.err.hasError():
             return None
-        return self.outputHandler()
+        #if self.actual_scope != '0decl':
+        #    return self.outputHandler()
 
     
     def visitLevel_tag(self, ctx:DNDParser.Level_tagContext):
        #'LEVEL' SEP NUM_INT
-        num_int = int(str(ctx.NUM_INT()))
+        if ctx.NUM_INT():
+            num_int = int(str(ctx.NUM_INT()))
+        else:
+            varname = str(ctx.IDENT())
+            if varname in self.variables.keys():
+                if self.variables[varname]['type'] == 'int':
+                    num_int = self.variables[varname]['value']
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: campo LEVEL só pode receber variavel do tipo int. Passado: {self.variables[varname]['type']}")        
+            else:
+                self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
+
+
         if num_int < 1:
             self.err.writeError(f"Linha {ctx.start.line}: valor de level não pode ser menor do que 0.")        
         else:
@@ -49,7 +96,17 @@ class SemanticAnalyzer(DNDVisitor):
 
     def visitSchool_tag(self, ctx:DNDParser.School_tagContext):
        #'SCHOOL' SEP SCHOOL;
-        self.table[self.actual_scope].symbol['school'] = str(ctx.SCHOOL())
+        if ctx.SCHOOL():
+            self.table[self.actual_scope].symbol['school'] = str(ctx.SCHOOL())
+            return
+        if str(ctx.IDENT()) in self.variables.keys():
+            if self.variables[str(ctx.IDENT())]['type'] == 'school':
+                self.table[self.actual_scope].symbol['school'] = self.variables[str(ctx.IDENT())]['value']
+            else:
+                self.err.writeError(f"Linha {ctx.start.line}: campo school só pode receber variavel do tipo school. Passado: {self.variables[str(ctx.IDENT())]['type']}")        
+        else:
+            self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
+
 
     def visitDescr_tag(self, ctx:DNDParser.Descr_tagContext):
        #'DESCR' SEP STRING;

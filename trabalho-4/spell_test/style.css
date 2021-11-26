@@ -1,0 +1,32 @@
+body{
+    margin-top: 0px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+h2{ font-family: 'Roboto Slab', serif; }
+p,span{ font-family: 'Roboto Condensed', sans-serif; }
+p{font-weight: 400;}
+span{font-weight: 700;}
+.spell{
+    margin-top: 0px;
+    padding: 10px;
+}
+.break{
+    width: 100%;
+}
+.flex{
+    display: flex;
+    padding:10px;
+    flex-wrap: wrap;
+    border: 1px #aaaaaa solid;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 4px #6D28D9 solid;
+}
+.item{
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+
+
+        

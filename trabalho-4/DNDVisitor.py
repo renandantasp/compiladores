@@ -14,6 +14,16 @@ class DNDVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by DNDParser#declaracao.
+    def visitDeclaracao(self, ctx:DNDParser.DeclaracaoContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#decl.
+    def visitDecl(self, ctx:DNDParser.DeclContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by DNDParser#spell.
     def visitSpell(self, ctx:DNDParser.SpellContext):
         return self.visitChildren(ctx)
@@ -46,11 +56,6 @@ class DNDVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by DNDParser#damage_tag.
     def visitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by DNDParser#cast_tag.
-    def visitCast_tag(self, ctx:DNDParser.Cast_tagContext):
         return self.visitChildren(ctx)
 
 

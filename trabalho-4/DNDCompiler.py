@@ -27,7 +27,8 @@ def main(argv):
     
     if not err.hasError():
         sem = SemanticAnalyzer(err)
-        symbols = sem.visitProgram(tree)
+        sem.visitProgram(tree)
+        symbols = sem.outputHandler()
         if not err.hasError():
             if len(argv) >= 3:
                 pg_gen = PageGenerator(symbols, argv[2])

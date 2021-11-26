@@ -1,7 +1,15 @@
 grammar DND;
 
 program:
-(spell)*;
+(declaracao) (spell)*;
+
+declaracao:
+'decl:' (decl)* | ;
+
+
+decl:
+DECL_TYPE   IDENT '=' (STRING | NUM_INT)  ';' ;
+
 
 spell:
 'def' IDENT '{' tags '}';
@@ -13,22 +21,22 @@ school_tag ','
 descr_tag   ;
 
 level_tag:
-'LEVEL' SEP NUM_INT; 
+'LEVEL' SEP (NUM_INT | IDENT); 
 
 name_tag:
-'NAME' SEP STRING;
+'NAME' SEP (STRING | IDENT);
 
 school_tag:
-'SCHOOL' SEP SCHOOL;
+'SCHOOL' SEP (SCHOOL | IDENT);
 
 descr_tag:
-'DESCR' SEP STRING;
+'DESCR' SEP (STRING | IDENT);
 
 damage_tag:
-'DAMAGE' SEP (NUM_INT DICE);
+'DAMAGE' SEP ((NUM_INT DICE) | (IDENT DICE));
 
-cast_tag:
-'CAST' SEP '(' NUM_INT ',' CAST_TIME ')';
+// cast_tag:
+// 'CAST' SEP '(' NUM_INT ',' CAST_TIME ')';
 
 
 
@@ -73,6 +81,9 @@ SCHOOL :
 'Abjuration'  | 'Conjuration'   | 'Divination' |
 'Enchantment' | 'Evocation'     | 'Illusion'   |
 'Necromancy'  | 'Transmutation' ;
+
+DECL_TYPE :
+'school' | 'dmg' | 'desc' | 'int';
 
 DICE:
 'D4'  | 'D6'  | 'D8' | 
