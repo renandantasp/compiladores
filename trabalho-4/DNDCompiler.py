@@ -1,4 +1,4 @@
-import sys
+import sys, os
 
 from antlr4 import *
 from antlr4.error.Errors import ParseCancellationException
@@ -12,22 +12,21 @@ from antlr4.error.ErrorListener import ErrorListener
 
 
 class MyErrorListener( ErrorListener ):
+    def __init__(self,err:ErrorHandler):
+        self.err = err
+
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        print (str(line) + ":" + str(column) + ": sintax ERROR, " + str(msg))
-        print ("Terminating Translation")
-        sys.exit()
+        self.err.writeError (f"Line {str(line)}: { str(msg)}")
+
 
     def reportAmbiguity(self, recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs):
-        print ("Ambiguity ERROR, " + str(configs))
-        sys.exit()
+        self.err.writeError ("Ambiguity ERROR, " + str(configs))
 
     def reportAttemptingFullContext(self, recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs):
-        print ("Attempting full context ERROR, " + str(configs))
-        sys.exit()
+        self.err.writeError ("Attempting full context ERROR, " + str(configs))
 
     def reportContextSensitivity(self, recognizer, dfa, startIndex, stopIndex, prediction, configs):
-        print ("Context ERROR, " + str(configs))
-        sys.exit()
+        self.err.writeError ("Context ERROR, " + str(configs))
     
 def main(argv):
     err = ErrorHandler()
@@ -36,7 +35,7 @@ def main(argv):
         lexer = DNDLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = DNDParser(stream)
-        parser._listeners = [ MyErrorListener() ]
+        parser._listeners = [ MyErrorListener(err) ]
         tree = parser.program()
 
     except ParseCancellationException as p:
@@ -56,7 +55,18 @@ def main(argv):
                 pg_gen = PageGenerator(symbols,"result")
 
             pg_gen.createPage()
-    err.showError()
+    
+    error = err.showError()
+    if len(argv) >=3:
+        if not os.path.isdir(argv[2]):
+            os.mkdir(argv[2])
+        with open(f"{argv[2]}/error_log.txt", "w") as f:
+            f.write(error)
+    else:
+        if not os.path.isdir("result"):
+            os.mkdir("result")
+        with open(f"result/error_log.txt", "w") as f:
+            f.write(error) 
 
 
 if __name__ == '__main__':

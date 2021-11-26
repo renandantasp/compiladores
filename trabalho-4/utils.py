@@ -19,4 +19,4 @@ class ErrorHandler:
         self.message = f"{self.message}{msg}\n"
     
     def showError(self):
-        print(self.message)
+        return self.message

@@ -4,7 +4,7 @@ int b = 4;
 school c = "c";
 b = a;
 b = 3;
-c = "2";
+c = "escola";
 
 def spell{
     NAME: "Magic Spell",
