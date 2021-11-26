@@ -54,8 +54,43 @@ class DNDVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by DNDParser#opt_tags.
+    def visitOpt_tags(self, ctx:DNDParser.Opt_tagsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by DNDParser#damage_tag.
     def visitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#cast_tag.
+    def visitCast_tag(self, ctx:DNDParser.Cast_tagContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#damage_type_tag.
+    def visitDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#comp_tag.
+    def visitComp_tag(self, ctx:DNDParser.Comp_tagContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#comp1.
+    def visitComp1(self, ctx:DNDParser.Comp1Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#comp2.
+    def visitComp2(self, ctx:DNDParser.Comp2Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by DNDParser#comp3.
+    def visitComp3(self, ctx:DNDParser.Comp3Context):
         return self.visitChildren(ctx)
 
 

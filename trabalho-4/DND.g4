@@ -6,19 +6,18 @@ program:
 declaracao:
 'decl:' (decl)* | ;
 
-
 decl:
 DECL_TYPE   IDENT '=' (STRING | NUM_INT)  ';' ;
 
-
 spell:
-'def' IDENT '{' tags '}';
+'def' IDENT '{' tags  '}';
 
 tags:
 level_tag  ',' 
 name_tag   ',' 
 school_tag ','
-descr_tag   ;
+descr_tag   
+(',' opt_tags)*;
 
 level_tag:
 'LEVEL' SEP (NUM_INT | IDENT); 
@@ -32,13 +31,29 @@ school_tag:
 descr_tag:
 'DESCR' SEP (STRING | IDENT);
 
+opt_tags:
+damage_tag      | 
+cast_tag        | 
+damage_type_tag |
+comp_tag        ;
+
 damage_tag:
 'DAMAGE' SEP ((NUM_INT DICE) | (IDENT DICE));
 
-// cast_tag:
-// 'CAST' SEP '(' NUM_INT ',' CAST_TIME ')';
+cast_tag:
+'CAST' SEP  (NUM_INT | IDENT) CAST_TIME ;
 
+damage_type_tag:
+'DMG_TYPE' SEP (STRING | IDENT);
 
+comp_tag:
+'COMP' SEP  comp1;
+comp1: 
+'V' | 'V'  comp2 | comp2;
+comp2: 
+'S' | 'S'  comp3 | comp3;
+comp3: 
+'M' + (STRING | IDENT);
 
 
 /*============================ LEX RULES ============================*/
@@ -47,8 +62,8 @@ damage_tag:
 NUM_INT	: 
 ('-')? ('0'..'9')+;
 
-NUM_REAL : 
-('-')? ('0'..'9')+ ('.' ('0'..'9')+)?;
+// NUM_REAL : 
+// ('-')? ('0'..'9')+ ('.' ('0'..'9')+)?;
 
 STRING 	: 
 '"' ( ESC_SEQ | ~('"'|'\\'|'\n'|'\r') )* '"';
@@ -83,7 +98,7 @@ SCHOOL :
 'Necromancy'  | 'Transmutation' ;
 
 DECL_TYPE :
-'school' | 'dmg' | 'desc' | 'int';
+'school' | 'text' | 'int';
 
 DICE:
 'D4'  | 'D6'  | 'D8' | 

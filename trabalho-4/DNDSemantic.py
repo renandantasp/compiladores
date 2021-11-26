@@ -17,6 +17,9 @@ class SemanticAnalyzer(DNDVisitor):
             ret[scope] = {}
             for key, value in self.table[scope].symbol.items():
                 ret[scope][key] = value
+        for spell, content in ret.items():
+            for key, value in content.items():
+                print(key,'\t:', value)
         return ret
     
    # def visitDeclaracao(self, ctx:DNDParser.DeclaracaoContext):
@@ -61,7 +64,6 @@ class SemanticAnalyzer(DNDVisitor):
         self.scopes.append(spell)
         self.actual_scope = spell
         self.table[spell] = SymbolTable(spell)
-
         self.visitTags(ctx.tags())
         if self.err.hasError():
             return None
@@ -80,8 +82,10 @@ class SemanticAnalyzer(DNDVisitor):
                     num_int = self.variables[varname]['value']
                 else:
                     self.err.writeError(f"Linha {ctx.start.line}: campo LEVEL só pode receber variavel do tipo int. Passado: {self.variables[varname]['type']}")        
+                    return
             else:
                 self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
+                return
 
 
         if num_int < 1:
@@ -92,7 +96,18 @@ class SemanticAnalyzer(DNDVisitor):
 
     def visitName_tag(self, ctx:DNDParser.Name_tagContext):
       #'NAME' SEP NUM_INT; 
-       self.table[self.actual_scope].symbol['name'] = str(ctx.STRING()).replace("\"", "")
+        if ctx.STRING():
+            self.table[self.actual_scope].symbol['name'] = str(ctx.STRING()).replace("\"", "")
+            return
+        varname = str(ctx.IDENT())
+        if varname in self.variables.keys():
+            if self.variables[varname]['type'] == 'text':
+                self.table[self.actual_scope].symbol['name'] = self.variables[varname]['value']
+            else:
+                self.err.writeError(f"Linha {ctx.start.line}: campo descr só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}")        
+        else:
+            self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")   
+    
 
     def visitSchool_tag(self, ctx:DNDParser.School_tagContext):
        #'SCHOOL' SEP SCHOOL;
@@ -100,14 +115,49 @@ class SemanticAnalyzer(DNDVisitor):
             self.table[self.actual_scope].symbol['school'] = str(ctx.SCHOOL())
             return
         if str(ctx.IDENT()) in self.variables.keys():
-            if self.variables[str(ctx.IDENT())]['type'] == 'school':
-                self.table[self.actual_scope].symbol['school'] = self.variables[str(ctx.IDENT())]['value']
+            var = self.variables[str(ctx.IDENT())]
+            if var['type'] == 'school':
+                self.table[self.actual_scope].symbol['school'] = var['value']
             else:
-                self.err.writeError(f"Linha {ctx.start.line}: campo school só pode receber variavel do tipo school. Passado: {self.variables[str(ctx.IDENT())]['type']}")        
+                self.err.writeError(f"Linha {ctx.start.line}: campo school só pode receber variavel do tipo school. Passado: {var['type']}")        
         else:
             self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
 
 
     def visitDescr_tag(self, ctx:DNDParser.Descr_tagContext):
        #'DESCR' SEP STRING;
-        self.table[self.actual_scope].symbol['descr'] = str(ctx.STRING()).replace("\"", "")
+        if ctx.STRING():
+            self.table[self.actual_scope].symbol['descr'] = str(ctx.STRING()).replace("\"", "")
+            return
+        varname = str(ctx.IDENT())
+        if varname in self.variables.keys():
+            if self.variables[varname]['type'] == 'text':
+                self.table[self.actual_scope].symbol['descr'] = self.variables[varname]['value']
+            else:
+                self.err.writeError(f"Linha {ctx.start.line}: campo descr só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}")        
+        else:
+            self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
+        
+    def visitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
+        if 'damage' in self.table[self.actual_scope].symbol:
+            self.err.writeError(f"Linha {ctx.start.line}: tag DAMAGE já foi inserida.")
+        else:
+            self.table[self.actual_scope].symbol['damage'] = str(ctx.NUM_INT()) + str(ctx.DICE())
+
+    def visitDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
+        if 'dmg_type' in self.table[self.actual_scope].symbol:
+            self.err.writeError(f"Linha {ctx.start.line}: tag DMG_TYPE já foi inserida.")
+        else:
+            self.table[self.actual_scope].symbol['dmg_type'] = str(ctx.STRING())
+
+    def visitCast_tag(self, ctx:DNDParser.Cast_tagContext):
+        if 'cast' in self.table[self.actual_scope].symbol:
+            self.err.writeError(f"Linha {ctx.start.line}: tag CAST já foi inserida.")
+        else:
+            self.table[self.actual_scope].symbol['cast'] = str(ctx.NUM_INT()) + ' ' + str(ctx.CAST_TIME())
+
+    def visitComp_tag(self, ctx:DNDParser.Comp_tagContext):
+        if 'comp' in self.table[self.actual_scope].symbol:
+            self.err.writeError(f"Linha {ctx.start.line}: tag COMP já foi inserida.")
+        else:
+            print("hhhhh")

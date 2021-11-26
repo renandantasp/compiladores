@@ -89,12 +89,75 @@ class DNDListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by DNDParser#opt_tags.
+    def enterOpt_tags(self, ctx:DNDParser.Opt_tagsContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#opt_tags.
+    def exitOpt_tags(self, ctx:DNDParser.Opt_tagsContext):
+        pass
+
+
     # Enter a parse tree produced by DNDParser#damage_tag.
     def enterDamage_tag(self, ctx:DNDParser.Damage_tagContext):
         pass
 
     # Exit a parse tree produced by DNDParser#damage_tag.
     def exitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#cast_tag.
+    def enterCast_tag(self, ctx:DNDParser.Cast_tagContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#cast_tag.
+    def exitCast_tag(self, ctx:DNDParser.Cast_tagContext):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#damage_type_tag.
+    def enterDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#damage_type_tag.
+    def exitDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#comp_tag.
+    def enterComp_tag(self, ctx:DNDParser.Comp_tagContext):
+        pass
+
+    # Exit a parse tree produced by DNDParser#comp_tag.
+    def exitComp_tag(self, ctx:DNDParser.Comp_tagContext):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#comp1.
+    def enterComp1(self, ctx:DNDParser.Comp1Context):
+        pass
+
+    # Exit a parse tree produced by DNDParser#comp1.
+    def exitComp1(self, ctx:DNDParser.Comp1Context):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#comp2.
+    def enterComp2(self, ctx:DNDParser.Comp2Context):
+        pass
+
+    # Exit a parse tree produced by DNDParser#comp2.
+    def exitComp2(self, ctx:DNDParser.Comp2Context):
+        pass
+
+
+    # Enter a parse tree produced by DNDParser#comp3.
+    def enterComp3(self, ctx:DNDParser.Comp3Context):
+        pass
+
+    # Exit a parse tree produced by DNDParser#comp3.
+    def exitComp3(self, ctx:DNDParser.Comp3Context):
         pass
 
 

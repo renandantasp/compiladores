@@ -7,33 +7,53 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\32")
-        buf.write("T\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
-        buf.write("\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3\2\3\2\7\2\31\n\2\f\2")
-        buf.write("\16\2\34\13\2\3\3\3\3\7\3 \n\3\f\3\16\3#\13\3\3\3\5\3")
-        buf.write("&\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5")
-        buf.write("\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\b\3")
-        buf.write("\b\3\b\3\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\13\3\13\3")
-        buf.write("\13\3\13\3\13\3\13\5\13R\n\13\3\13\2\2\f\2\4\6\b\n\f\16")
-        buf.write("\20\22\24\2\6\4\2\17\17\21\21\4\2\17\17\32\32\4\2\21\21")
-        buf.write("\32\32\4\2\27\27\32\32\2M\2\26\3\2\2\2\4%\3\2\2\2\6\'")
-        buf.write("\3\2\2\2\b-\3\2\2\2\n\63\3\2\2\2\f;\3\2\2\2\16?\3\2\2")
-        buf.write("\2\20C\3\2\2\2\22G\3\2\2\2\24K\3\2\2\2\26\32\5\4\3\2\27")
-        buf.write("\31\5\b\5\2\30\27\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2")
-        buf.write("\32\33\3\2\2\2\33\3\3\2\2\2\34\32\3\2\2\2\35!\7\3\2\2")
-        buf.write("\36 \5\6\4\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"\3")
-        buf.write("\2\2\2\"&\3\2\2\2#!\3\2\2\2$&\3\2\2\2%\35\3\2\2\2%$\3")
-        buf.write("\2\2\2&\5\3\2\2\2\'(\7\30\2\2()\7\32\2\2)*\7\4\2\2*+\t")
-        buf.write("\2\2\2+,\7\5\2\2,\7\3\2\2\2-.\7\6\2\2./\7\32\2\2/\60\7")
-        buf.write("\7\2\2\60\61\5\n\6\2\61\62\7\b\2\2\62\t\3\2\2\2\63\64")
-        buf.write("\5\f\7\2\64\65\7\t\2\2\65\66\5\16\b\2\66\67\7\t\2\2\67")
-        buf.write("8\5\20\t\289\7\t\2\29:\5\22\n\2:\13\3\2\2\2;<\7\n\2\2")
-        buf.write("<=\7\25\2\2=>\t\3\2\2>\r\3\2\2\2?@\7\13\2\2@A\7\25\2\2")
-        buf.write("AB\t\4\2\2B\17\3\2\2\2CD\7\f\2\2DE\7\25\2\2EF\t\5\2\2")
-        buf.write("F\21\3\2\2\2GH\7\r\2\2HI\7\25\2\2IJ\t\4\2\2J\23\3\2\2")
-        buf.write("\2KL\7\16\2\2LQ\7\25\2\2MN\7\17\2\2NR\7\31\2\2OP\7\32")
-        buf.write("\2\2PR\7\31\2\2QM\3\2\2\2QO\3\2\2\2R\25\3\2\2\2\6\32!")
-        buf.write("%Q")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3 ")
+        buf.write("\u008e\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
+        buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\3\2\3\2")
+        buf.write("\7\2\'\n\2\f\2\16\2*\13\2\3\3\3\3\7\3.\n\3\f\3\16\3\61")
+        buf.write("\13\3\3\3\5\3\64\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3")
+        buf.write("\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6")
+        buf.write("K\n\6\f\6\16\6N\13\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3")
+        buf.write("\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\5\13")
+        buf.write("d\n\13\3\f\3\f\3\f\3\f\3\f\3\f\5\fl\n\f\3\r\3\r\3\r\3")
+        buf.write("\r\3\r\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\20\3")
+        buf.write("\20\3\20\3\20\5\20\177\n\20\3\21\3\21\3\21\3\21\5\21\u0085")
+        buf.write("\n\21\3\22\6\22\u0088\n\22\r\22\16\22\u0089\3\22\3\22")
+        buf.write("\3\22\2\2\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"")
+        buf.write("\2\6\4\2\25\25\27\27\4\2\25\25  \4\2\27\27  \4\2\35\35")
+        buf.write("  \2\u0089\2$\3\2\2\2\4\63\3\2\2\2\6\65\3\2\2\2\b;\3\2")
+        buf.write("\2\2\nA\3\2\2\2\fO\3\2\2\2\16S\3\2\2\2\20W\3\2\2\2\22")
+        buf.write("[\3\2\2\2\24c\3\2\2\2\26e\3\2\2\2\30m\3\2\2\2\32r\3\2")
+        buf.write("\2\2\34v\3\2\2\2\36~\3\2\2\2 \u0084\3\2\2\2\"\u0087\3")
+        buf.write("\2\2\2$(\5\4\3\2%\'\5\b\5\2&%\3\2\2\2\'*\3\2\2\2(&\3\2")
+        buf.write("\2\2()\3\2\2\2)\3\3\2\2\2*(\3\2\2\2+/\7\3\2\2,.\5\6\4")
+        buf.write("\2-,\3\2\2\2.\61\3\2\2\2/-\3\2\2\2/\60\3\2\2\2\60\64\3")
+        buf.write("\2\2\2\61/\3\2\2\2\62\64\3\2\2\2\63+\3\2\2\2\63\62\3\2")
+        buf.write("\2\2\64\5\3\2\2\2\65\66\7\36\2\2\66\67\7 \2\2\678\7\4")
+        buf.write("\2\289\t\2\2\29:\7\5\2\2:\7\3\2\2\2;<\7\6\2\2<=\7 \2\2")
+        buf.write("=>\7\7\2\2>?\5\n\6\2?@\7\b\2\2@\t\3\2\2\2AB\5\f\7\2BC")
+        buf.write("\7\t\2\2CD\5\16\b\2DE\7\t\2\2EF\5\20\t\2FG\7\t\2\2GL\5")
+        buf.write("\22\n\2HI\7\t\2\2IK\5\24\13\2JH\3\2\2\2KN\3\2\2\2LJ\3")
+        buf.write("\2\2\2LM\3\2\2\2M\13\3\2\2\2NL\3\2\2\2OP\7\n\2\2PQ\7\33")
+        buf.write("\2\2QR\t\3\2\2R\r\3\2\2\2ST\7\13\2\2TU\7\33\2\2UV\t\4")
+        buf.write("\2\2V\17\3\2\2\2WX\7\f\2\2XY\7\33\2\2YZ\t\5\2\2Z\21\3")
+        buf.write("\2\2\2[\\\7\r\2\2\\]\7\33\2\2]^\t\4\2\2^\23\3\2\2\2_d")
+        buf.write("\5\26\f\2`d\5\30\r\2ad\5\32\16\2bd\5\34\17\2c_\3\2\2\2")
+        buf.write("c`\3\2\2\2ca\3\2\2\2cb\3\2\2\2d\25\3\2\2\2ef\7\16\2\2")
+        buf.write("fk\7\33\2\2gh\7\25\2\2hl\7\37\2\2ij\7 \2\2jl\7\37\2\2")
+        buf.write("kg\3\2\2\2ki\3\2\2\2l\27\3\2\2\2mn\7\17\2\2no\7\33\2\2")
+        buf.write("op\t\3\2\2pq\7\34\2\2q\31\3\2\2\2rs\7\20\2\2st\7\33\2")
+        buf.write("\2tu\t\4\2\2u\33\3\2\2\2vw\7\21\2\2wx\7\33\2\2xy\5\36")
+        buf.write("\20\2y\35\3\2\2\2z\177\7\22\2\2{|\7\22\2\2|\177\5 \21")
+        buf.write("\2}\177\5 \21\2~z\3\2\2\2~{\3\2\2\2~}\3\2\2\2\177\37\3")
+        buf.write("\2\2\2\u0080\u0085\7\23\2\2\u0081\u0082\7\23\2\2\u0082")
+        buf.write("\u0085\5\"\22\2\u0083\u0085\5\"\22\2\u0084\u0080\3\2\2")
+        buf.write("\2\u0084\u0081\3\2\2\2\u0084\u0083\3\2\2\2\u0085!\3\2")
+        buf.write("\2\2\u0086\u0088\7\24\2\2\u0087\u0086\3\2\2\2\u0088\u0089")
+        buf.write("\3\2\2\2\u0089\u0087\3\2\2\2\u0089\u008a\3\2\2\2\u008a")
+        buf.write("\u008b\3\2\2\2\u008b\u008c\t\4\2\2\u008c#\3\2\2\2\13(")
+        buf.write("/\63Lck~\u0084\u0089")
         return buf.getvalue()
 
 
@@ -49,15 +69,18 @@ class DNDParser ( Parser ):
 
     literalNames = [ "<INVALID>", "'decl:'", "'='", "';'", "'def'", "'{'", 
                      "'}'", "','", "'LEVEL'", "'NAME'", "'SCHOOL'", "'DESCR'", 
-                     "'DAMAGE'", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "'DAMAGE'", "'CAST'", "'DMG_TYPE'", "'COMP'", "'V'", 
+                     "'S'", "'M'", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "':'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "NUM_INT", "NUM_REAL", "STRING", "OPEN_STRING", 
-                      "COMMENT", "WS", "SEP", "CAST_TIME", "SCHOOL", "DECL_TYPE", 
-                      "DICE", "IDENT" ]
+                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                      "<INVALID>", "<INVALID>", "<INVALID>", "NUM_INT", 
+                      "NUM_REAL", "STRING", "OPEN_STRING", "COMMENT", "WS", 
+                      "SEP", "CAST_TIME", "SCHOOL", "DECL_TYPE", "DICE", 
+                      "IDENT" ]
 
     RULE_program = 0
     RULE_declaracao = 1
@@ -68,10 +91,19 @@ class DNDParser ( Parser ):
     RULE_name_tag = 6
     RULE_school_tag = 7
     RULE_descr_tag = 8
-    RULE_damage_tag = 9
+    RULE_opt_tags = 9
+    RULE_damage_tag = 10
+    RULE_cast_tag = 11
+    RULE_damage_type_tag = 12
+    RULE_comp_tag = 13
+    RULE_comp1 = 14
+    RULE_comp2 = 15
+    RULE_comp3 = 16
 
     ruleNames =  [ "program", "declaracao", "decl", "spell", "tags", "level_tag", 
-                   "name_tag", "school_tag", "descr_tag", "damage_tag" ]
+                   "name_tag", "school_tag", "descr_tag", "opt_tags", "damage_tag", 
+                   "cast_tag", "damage_type_tag", "comp_tag", "comp1", "comp2", 
+                   "comp3" ]
 
     EOF = Token.EOF
     T__0=1
@@ -86,18 +118,24 @@ class DNDParser ( Parser ):
     T__9=10
     T__10=11
     T__11=12
-    NUM_INT=13
-    NUM_REAL=14
-    STRING=15
-    OPEN_STRING=16
-    COMMENT=17
-    WS=18
-    SEP=19
-    CAST_TIME=20
-    SCHOOL=21
-    DECL_TYPE=22
-    DICE=23
-    IDENT=24
+    T__12=13
+    T__13=14
+    T__14=15
+    T__15=16
+    T__16=17
+    T__17=18
+    NUM_INT=19
+    NUM_REAL=20
+    STRING=21
+    OPEN_STRING=22
+    COMMENT=23
+    WS=24
+    SEP=25
+    CAST_TIME=26
+    SCHOOL=27
+    DECL_TYPE=28
+    DICE=29
+    IDENT=30
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -151,15 +189,15 @@ class DNDParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 20
+            self.state = 34
             self.declaracao()
-            self.state = 24
+            self.state = 38
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==DNDParser.T__3:
-                self.state = 21
+                self.state = 35
                 self.spell()
-                self.state = 26
+                self.state = 40
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -210,20 +248,20 @@ class DNDParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_declaracao)
         self._la = 0 # Token type
         try:
-            self.state = 35
+            self.state = 49
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [DNDParser.T__0]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 27
+                self.state = 41
                 self.match(DNDParser.T__0)
-                self.state = 31
+                self.state = 45
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==DNDParser.DECL_TYPE:
-                    self.state = 28
+                    self.state = 42
                     self.decl()
-                    self.state = 33
+                    self.state = 47
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
@@ -288,20 +326,20 @@ class DNDParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 37
+            self.state = 51
             self.match(DNDParser.DECL_TYPE)
-            self.state = 38
+            self.state = 52
             self.match(DNDParser.IDENT)
-            self.state = 39
+            self.state = 53
             self.match(DNDParser.T__1)
-            self.state = 40
+            self.state = 54
             _la = self._input.LA(1)
             if not(_la==DNDParser.NUM_INT or _la==DNDParser.STRING):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 41
+            self.state = 55
             self.match(DNDParser.T__2)
         except RecognitionException as re:
             localctx.exception = re
@@ -350,15 +388,15 @@ class DNDParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_spell)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 43
+            self.state = 57
             self.match(DNDParser.T__3)
-            self.state = 44
+            self.state = 58
             self.match(DNDParser.IDENT)
-            self.state = 45
+            self.state = 59
             self.match(DNDParser.T__4)
-            self.state = 46
+            self.state = 60
             self.tags()
-            self.state = 47
+            self.state = 61
             self.match(DNDParser.T__5)
         except RecognitionException as re:
             localctx.exception = re
@@ -390,6 +428,13 @@ class DNDParser ( Parser ):
             return self.getTypedRuleContext(DNDParser.Descr_tagContext,0)
 
 
+        def opt_tags(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(DNDParser.Opt_tagsContext)
+            else:
+                return self.getTypedRuleContext(DNDParser.Opt_tagsContext,i)
+
+
         def getRuleIndex(self):
             return DNDParser.RULE_tags
 
@@ -414,22 +459,35 @@ class DNDParser ( Parser ):
 
         localctx = DNDParser.TagsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_tags)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 49
+            self.state = 63
             self.level_tag()
-            self.state = 50
+            self.state = 64
             self.match(DNDParser.T__6)
-            self.state = 51
+            self.state = 65
             self.name_tag()
-            self.state = 52
+            self.state = 66
             self.match(DNDParser.T__6)
-            self.state = 53
+            self.state = 67
             self.school_tag()
-            self.state = 54
+            self.state = 68
             self.match(DNDParser.T__6)
-            self.state = 55
+            self.state = 69
             self.descr_tag()
+            self.state = 74
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==DNDParser.T__6:
+                self.state = 70
+                self.match(DNDParser.T__6)
+                self.state = 71
+                self.opt_tags()
+                self.state = 76
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -480,11 +538,11 @@ class DNDParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 57
+            self.state = 77
             self.match(DNDParser.T__7)
-            self.state = 58
+            self.state = 78
             self.match(DNDParser.SEP)
-            self.state = 59
+            self.state = 79
             _la = self._input.LA(1)
             if not(_la==DNDParser.NUM_INT or _la==DNDParser.IDENT):
                 self._errHandler.recoverInline(self)
@@ -541,11 +599,11 @@ class DNDParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 61
+            self.state = 81
             self.match(DNDParser.T__8)
-            self.state = 62
+            self.state = 82
             self.match(DNDParser.SEP)
-            self.state = 63
+            self.state = 83
             _la = self._input.LA(1)
             if not(_la==DNDParser.STRING or _la==DNDParser.IDENT):
                 self._errHandler.recoverInline(self)
@@ -602,11 +660,11 @@ class DNDParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 65
+            self.state = 85
             self.match(DNDParser.T__9)
-            self.state = 66
+            self.state = 86
             self.match(DNDParser.SEP)
-            self.state = 67
+            self.state = 87
             _la = self._input.LA(1)
             if not(_la==DNDParser.SCHOOL or _la==DNDParser.IDENT):
                 self._errHandler.recoverInline(self)
@@ -663,17 +721,98 @@ class DNDParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 69
+            self.state = 89
             self.match(DNDParser.T__10)
-            self.state = 70
+            self.state = 90
             self.match(DNDParser.SEP)
-            self.state = 71
+            self.state = 91
             _la = self._input.LA(1)
             if not(_la==DNDParser.STRING or _la==DNDParser.IDENT):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Opt_tagsContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def damage_tag(self):
+            return self.getTypedRuleContext(DNDParser.Damage_tagContext,0)
+
+
+        def cast_tag(self):
+            return self.getTypedRuleContext(DNDParser.Cast_tagContext,0)
+
+
+        def damage_type_tag(self):
+            return self.getTypedRuleContext(DNDParser.Damage_type_tagContext,0)
+
+
+        def comp_tag(self):
+            return self.getTypedRuleContext(DNDParser.Comp_tagContext,0)
+
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_opt_tags
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterOpt_tags" ):
+                listener.enterOpt_tags(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitOpt_tags" ):
+                listener.exitOpt_tags(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOpt_tags" ):
+                return visitor.visitOpt_tags(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def opt_tags(self):
+
+        localctx = DNDParser.Opt_tagsContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 18, self.RULE_opt_tags)
+        try:
+            self.state = 97
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [DNDParser.T__11]:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 93
+                self.damage_tag()
+                pass
+            elif token in [DNDParser.T__12]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 94
+                self.cast_tag()
+                pass
+            elif token in [DNDParser.T__13]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 95
+                self.damage_type_tag()
+                pass
+            elif token in [DNDParser.T__14]:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 96
+                self.comp_tag()
+                pass
+            else:
+                raise NoViableAltException(self)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -723,31 +862,411 @@ class DNDParser ( Parser ):
     def damage_tag(self):
 
         localctx = DNDParser.Damage_tagContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_damage_tag)
+        self.enterRule(localctx, 20, self.RULE_damage_tag)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 73
+            self.state = 99
             self.match(DNDParser.T__11)
-            self.state = 74
+            self.state = 100
             self.match(DNDParser.SEP)
-            self.state = 79
+            self.state = 105
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [DNDParser.NUM_INT]:
-                self.state = 75
+                self.state = 101
                 self.match(DNDParser.NUM_INT)
-                self.state = 76
+                self.state = 102
                 self.match(DNDParser.DICE)
                 pass
             elif token in [DNDParser.IDENT]:
-                self.state = 77
+                self.state = 103
                 self.match(DNDParser.IDENT)
-                self.state = 78
+                self.state = 104
                 self.match(DNDParser.DICE)
                 pass
             else:
                 raise NoViableAltException(self)
 
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Cast_tagContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def SEP(self):
+            return self.getToken(DNDParser.SEP, 0)
+
+        def CAST_TIME(self):
+            return self.getToken(DNDParser.CAST_TIME, 0)
+
+        def NUM_INT(self):
+            return self.getToken(DNDParser.NUM_INT, 0)
+
+        def IDENT(self):
+            return self.getToken(DNDParser.IDENT, 0)
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_cast_tag
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterCast_tag" ):
+                listener.enterCast_tag(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitCast_tag" ):
+                listener.exitCast_tag(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCast_tag" ):
+                return visitor.visitCast_tag(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def cast_tag(self):
+
+        localctx = DNDParser.Cast_tagContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 22, self.RULE_cast_tag)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 107
+            self.match(DNDParser.T__12)
+            self.state = 108
+            self.match(DNDParser.SEP)
+            self.state = 109
+            _la = self._input.LA(1)
+            if not(_la==DNDParser.NUM_INT or _la==DNDParser.IDENT):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+            self.state = 110
+            self.match(DNDParser.CAST_TIME)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Damage_type_tagContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def SEP(self):
+            return self.getToken(DNDParser.SEP, 0)
+
+        def STRING(self):
+            return self.getToken(DNDParser.STRING, 0)
+
+        def IDENT(self):
+            return self.getToken(DNDParser.IDENT, 0)
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_damage_type_tag
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterDamage_type_tag" ):
+                listener.enterDamage_type_tag(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitDamage_type_tag" ):
+                listener.exitDamage_type_tag(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDamage_type_tag" ):
+                return visitor.visitDamage_type_tag(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def damage_type_tag(self):
+
+        localctx = DNDParser.Damage_type_tagContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 24, self.RULE_damage_type_tag)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 112
+            self.match(DNDParser.T__13)
+            self.state = 113
+            self.match(DNDParser.SEP)
+            self.state = 114
+            _la = self._input.LA(1)
+            if not(_la==DNDParser.STRING or _la==DNDParser.IDENT):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Comp_tagContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def SEP(self):
+            return self.getToken(DNDParser.SEP, 0)
+
+        def comp1(self):
+            return self.getTypedRuleContext(DNDParser.Comp1Context,0)
+
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_comp_tag
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterComp_tag" ):
+                listener.enterComp_tag(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitComp_tag" ):
+                listener.exitComp_tag(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComp_tag" ):
+                return visitor.visitComp_tag(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def comp_tag(self):
+
+        localctx = DNDParser.Comp_tagContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 26, self.RULE_comp_tag)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 116
+            self.match(DNDParser.T__14)
+            self.state = 117
+            self.match(DNDParser.SEP)
+            self.state = 118
+            self.comp1()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Comp1Context(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def comp2(self):
+            return self.getTypedRuleContext(DNDParser.Comp2Context,0)
+
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_comp1
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterComp1" ):
+                listener.enterComp1(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitComp1" ):
+                listener.exitComp1(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComp1" ):
+                return visitor.visitComp1(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def comp1(self):
+
+        localctx = DNDParser.Comp1Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 28, self.RULE_comp1)
+        try:
+            self.state = 124
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 120
+                self.match(DNDParser.T__15)
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 121
+                self.match(DNDParser.T__15)
+                self.state = 122
+                self.comp2()
+                pass
+
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 123
+                self.comp2()
+                pass
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Comp2Context(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def comp3(self):
+            return self.getTypedRuleContext(DNDParser.Comp3Context,0)
+
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_comp2
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterComp2" ):
+                listener.enterComp2(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitComp2" ):
+                listener.exitComp2(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComp2" ):
+                return visitor.visitComp2(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def comp2(self):
+
+        localctx = DNDParser.Comp2Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 30, self.RULE_comp2)
+        try:
+            self.state = 130
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 126
+                self.match(DNDParser.T__16)
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 127
+                self.match(DNDParser.T__16)
+                self.state = 128
+                self.comp3()
+                pass
+
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 129
+                self.comp3()
+                pass
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class Comp3Context(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def STRING(self):
+            return self.getToken(DNDParser.STRING, 0)
+
+        def IDENT(self):
+            return self.getToken(DNDParser.IDENT, 0)
+
+        def getRuleIndex(self):
+            return DNDParser.RULE_comp3
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterComp3" ):
+                listener.enterComp3(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitComp3" ):
+                listener.exitComp3(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComp3" ):
+                return visitor.visitComp3(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def comp3(self):
+
+        localctx = DNDParser.Comp3Context(self, self._ctx, self.state)
+        self.enterRule(localctx, 32, self.RULE_comp3)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 133 
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while True:
+                self.state = 132
+                self.match(DNDParser.T__17)
+                self.state = 135 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if not (_la==DNDParser.T__17):
+                    break
+
+            self.state = 137
+            _la = self._input.LA(1)
+            if not(_la==DNDParser.STRING or _la==DNDParser.IDENT):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
