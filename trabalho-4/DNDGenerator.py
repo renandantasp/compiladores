@@ -28,8 +28,14 @@ class PageGenerator:
             <div class="item">
                 <p><span>SCHOOL</span><br>#SCHOOL#</p>
             </div>
-            <div class="break">
-            </div>            
+            <div class="break"></div>
+            """
+        opt_tag = """<div class="item">
+                <p><span>TAG</span><br>$VALUE$</p>
+            </div>"""
+        bl = """<div class="break">"""
+        quant_opt = 0
+        end_spell = """</div>            
         </div>
         <p class="desc">#DESCR#</p>
     </div>"""
@@ -38,11 +44,32 @@ class PageGenerator:
         for scopes, symbol in self.symbols.items():
             spell = html_spell
 
+            opt = ""
             for atr, value in symbol.items():
-                #print(f"#{atr.upper()}#")
-
-                spell = spell.replace(f"#{atr.upper()}#", str(value))
-            html = html + spell         
+                if atr == 'level' or atr == 'name' or atr == 'school':
+                    spell = spell.replace(f"#{atr.upper()}#", str(value))
+                elif atr == 'cast':
+                    print(str(value))
+                    copy = opt_tag
+                    copy = copy.replace("TAG", "CAST").replace("$VALUE$", str(value))
+                    opt = opt + copy
+                elif atr == 'dmg':
+                    copy = opt_tag
+                    copy = copy.replace("TAG", "DAMAGE").replace("$VALUE$", str(value))
+                    opt = opt + copy
+                elif atr == 'dmg_type':
+                    copy = opt_tag
+                    copy = copy.replace("TAG", "DAMAGE TYPE").replace("$VALUE$", str(value))
+                    opt = opt + copy
+                elif atr == 'comp':
+                    copy = opt_tag
+                    copy = copy.replace("TAG", "COMPONENTS").replace("$VALUE$", str(value))
+                    opt = opt + copy
+     
+                
+            html = html + spell + opt + end_spell
+            html = html.replace('#DESCR#', symbol['descr'])
+            
 
         
         html = html + end_html
@@ -73,11 +100,23 @@ span{font-weight: 700;}
     border: 1px #aaaaaa solid;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-top: 4px #6D28D9 solid;
+    border-top: 4px #888888 solid;
 }
 .item{
     padding-left: 4vw;
     padding-right: 4vw;
+}
+
+.Necromancy{
+    border-top-color: #9bd928 ;
+}
+
+.Abjuration{
+    border-top-color: #28cdd9 ;
+}
+
+.Evocation{
+    border-top-color: #aa2000 ;
 }
 
 

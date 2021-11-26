@@ -17,22 +17,26 @@ class SemanticAnalyzer(DNDVisitor):
             ret[scope] = {}
             for key, value in self.table[scope].symbol.items():
                 ret[scope][key] = value
-        for spell, content in ret.items():
+        for _, content in ret.items():
             for key, value in content.items():
-                print(key,'\t:', value)
+                if key =='dmg_type':
+                    print(key,'\t:', value)
+                else:
+                    print(key,'\t\t:', value)
+            print("\n")
         return ret
-    
-   # def visitDeclaracao(self, ctx:DNDParser.DeclaracaoContext):
-   #     self.actual_scope = 'decl'
-   #     self.scopes.append('decl')
-        
-   #     self.table['decl'] = SymbolTable('decl')
-   #     return self.visitChildren(ctx)
-        #print(ctx.decl()
-        #self.visitDecl(ctx.decl())
-        # if self.err.hasError():
-        #     return None
 
+
+    def verifyVar(self, varname, type, msg1=f"", msg2=f""):
+        if varname in self.variables.keys():
+            if self.variables[varname]['type'] == type:
+                return self.variables[varname]['value']
+            else:
+                return -1
+                self.err.writeError(msg1)
+        else:
+            return -2
+            self.err.writeError(msg2)
 
     def visitDecl(self, ctx:DNDParser.DeclContext):
         if str(ctx.IDENT()) in self.variables.keys():
@@ -141,23 +145,92 @@ class SemanticAnalyzer(DNDVisitor):
     def visitDamage_tag(self, ctx:DNDParser.Damage_tagContext):
         if 'damage' in self.table[self.actual_scope].symbol:
             self.err.writeError(f"Linha {ctx.start.line}: tag DAMAGE já foi inserida.")
-        else:
+            return
+        if ctx.NUM_INT():
             self.table[self.actual_scope].symbol['damage'] = str(ctx.NUM_INT()) + str(ctx.DICE())
+        else:
+            varname = str(ctx.IDENT())
+            ret = self.verifyVar(varname,'int')
+            if ret == -1:
+                self.err.writeError(f"Linha {ctx.start.line}: campo damage apenas aceita variavel do tipo int. Passado: {self.variables[varname]['type']}.")
+                return
+            if ret == -2:
+                self.err.writeError( f"Linha {ctx.start.line}: variável passada não existe.")
+                return
+
+            self.table[self.actual_scope].symbol['damage'] = str(ret) + ' ' + str(ctx.DICE())
 
     def visitDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
         if 'dmg_type' in self.table[self.actual_scope].symbol:
             self.err.writeError(f"Linha {ctx.start.line}: tag DMG_TYPE já foi inserida.")
+            return
+        if ctx.STRING():
+            self.table[self.actual_scope].symbol['dmg_type'] = str(ctx.STRING()).replace("\"","")
         else:
-            self.table[self.actual_scope].symbol['dmg_type'] = str(ctx.STRING())
+            varname = str(ctx.IDENT())
+
+            ret = self.verifyVar(varname,'text')
+            if ret == -1:
+                self.err.writeError(f"Linha {ctx.start.line}: campo dmg_type apenas aceita variavel do tipo text. Passado:{self.variables[varname]['type']}.")
+                return
+            if ret == -2:
+                self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")
+                return
+            self.table[self.actual_scope].symbol['dmg_type'] = ret
+            
 
     def visitCast_tag(self, ctx:DNDParser.Cast_tagContext):
         if 'cast' in self.table[self.actual_scope].symbol:
             self.err.writeError(f"Linha {ctx.start.line}: tag CAST já foi inserida.")
         else:
-            self.table[self.actual_scope].symbol['cast'] = str(ctx.NUM_INT()) + ' ' + str(ctx.CAST_TIME())
+            if ctx.NUM_INT():
+                self.table[self.actual_scope].symbol['cast'] = str(ctx.NUM_INT()) + ' ' + str(ctx.CAST_TIME())
+                return
+            varname = str(ctx.IDENT())
+            if varname in self.variables.keys():
+                if self.variables[varname]['type'] == 'int':
+                    self.table[self.actual_scope].symbol['cast'] = str(self.variables[varname]['value']) + ' ' + str(ctx.CAST_TIME())
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: Campo CAST só aceita variavel do tipo int. Passado: {self.variables[varname]['type']}")        
+            else:
+                self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")
 
     def visitComp_tag(self, ctx:DNDParser.Comp_tagContext):
         if 'comp' in self.table[self.actual_scope].symbol:
             self.err.writeError(f"Linha {ctx.start.line}: tag COMP já foi inserida.")
         else:
-            print("hhhhh")
+            comp = self.visitComp1(ctx.comp1())
+            self.table[self.actual_scope].symbol['comp'] = comp
+
+    def visitComp1(self, ctx:DNDParser.Comp1Context):
+        ret = ""
+        if ctx.V():
+            ret += "V"
+        if ctx.comp2():
+            ret += self.visitComp2(ctx.comp2())
+        return ret.lstrip()
+
+    def visitComp2(self, ctx:DNDParser.Comp2Context):
+        ret = ""
+        if ctx.S():
+            ret += " S"
+        if ctx.comp3():
+            ret += self.visitComp3(ctx.comp3())
+        return ret
+    
+    def visitComp3(self, ctx:DNDParser.Comp3Context):
+        ret = ""
+        if ctx.M():
+            if ctx.STRING():
+                ret += " M" + " (" + str(ctx.STRING()).replace("\"", "") + ")"
+                return ret
+            varname = str(ctx.IDENT())
+            if varname in self.variables.keys():
+                if self.variables[varname]['type'] == 'text':
+                    ret += " M" + " (" + str(self.variables[varname]['value']).replace("\"", "") + ")"
+                else:
+                    self.err.writeError(f"Linha {ctx.start.line}: Componente M só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}")        
+            else:
+                self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
+        return ret
+    

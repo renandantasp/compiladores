@@ -13,10 +13,10 @@ spell:
 'def' IDENT '{' tags  '}';
 
 tags:
-level_tag  ',' 
 name_tag   ',' 
-school_tag ','
-descr_tag   
+descr_tag  ',' 
+level_tag  ',' 
+school_tag 
 (',' opt_tags)*;
 
 level_tag:
@@ -49,11 +49,11 @@ damage_type_tag:
 comp_tag:
 'COMP' SEP  comp1;
 comp1: 
-'V' | 'V'  comp2 | comp2;
+V | V  comp2 | comp2;
 comp2: 
-'S' | 'S'  comp3 | comp3;
+S | S  comp3 | comp3;
 comp3: 
-'M' + (STRING | IDENT);
+M (STRING | IDENT);
 
 
 /*============================ LEX RULES ============================*/
@@ -88,6 +88,9 @@ WS  :
 SEP :
 ':';
 
+V: 'V'; 
+S: 'S'; 
+M:'M';
 
 CAST_TIME :
 'Action' | 'Reaction' | 'Bonus Action' | 'Minute' | 'Hour';
@@ -103,6 +106,8 @@ DECL_TYPE :
 DICE:
 'D4'  | 'D6'  | 'D8' | 
 'D10' | 'D12' | 'D20';
+
+
 
 
 IDENT : 

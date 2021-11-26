@@ -21,11 +21,23 @@ span{font-weight: 700;}
     border: 1px #aaaaaa solid;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-top: 4px #6D28D9 solid;
+    border-top: 4px #888888 solid;
 }
 .item{
     padding-left: 4vw;
     padding-right: 4vw;
+}
+
+.Necromancy{
+    border-top-color: #9bd928 ;
+}
+
+.Abjuration{
+    border-top-color: #28cdd9 ;
+}
+
+.Evocation{
+    border-top-color: #aa2000 ;
 }
 
 

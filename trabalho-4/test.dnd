@@ -8,27 +8,47 @@
 
 decl:
 int level = 5;
+text name = "Spell Name";
 school escola = "Black Magic";
 text texto = "lorem ipsum dolor sit amet";
-text nome = "magiaaa uuu magica";
+text material = "pena de ganso";
+int cast_time = 2;
+int dmg = 3;
+text dmg_type = "Necrotic";
 
 
-%def aid {
-%    LEVEL: 8,
-%    NAME: "Abi-Dalzim’s Horrid Wilting",
-%    SCHOOL: Necromancy,
-%    DESCR: "ye"
-%}
-
-
-def novo_spell {
-    LEVEL: level,
-    NAME: nome,
-    SCHOOL: escola,
-    DESCR: texto,
-    DAMAGE: 2 D4,
+def abi {
+    NAME: "Abi-Dalzim’s Horrid Wilting",
+    DESCR: "You draw the moisture from every creature in a 30-foot cube centered on a point you choose within range. Each creature in that area must make a Constitution saving throw. Constructs and undead aren’t affected, and plants and water elementals make this saving throw with disadvantage. A creature takes 12d8 necrotic damage on a failed save, or half as much damage on a successful one.",
+    LEVEL: 8,
+    SCHOOL: Necromancy,
+    DAMAGE: 12 D8,
     DMG_TYPE: "Necrotic",
-    CAST: 1 Bonus Action,
-    COMP:  V S M "ajsndas"
+    CAST: 1 Action,
+    COMP: V S M "a bit of sponge"
 }
 
+
+def acid {
+    NAME: "Acid Arrow",
+    DESCR: "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.",
+
+    LEVEL: 2,
+    SCHOOL: Evocation,
+    DAMAGE: 2 D4,
+
+    CAST: 1 Action,
+    COMP: V S M "powdered rhubarb leaf and an adder’s stomach",
+    DMG_TYPE: "Acid"
+}
+
+def novo_spell_2 {
+    NAME: "Absorb Elements",
+    DESCR: "The spell captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the spell ends.",   
+    LEVEL: 1,
+    SCHOOL: Abjuration,
+    DAMAGE: 1 D6,
+    CAST: 1 Reaction,
+    DMG_TYPE: "Acid",
+    COMP: S
+}
