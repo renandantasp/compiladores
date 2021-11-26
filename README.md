@@ -7,6 +7,8 @@ Repositório dos trabalhos da disciplina de Construção de Compiladores (100149
 
 [Trabalho 2 - Construção de um analisador sintático](https://github.com/renandantasp/compiladores/tree/main/trabalho-2)
 
+[Trabalho 4 - Construção da linguagem DND](https://github.com/renandantasp/compiladores/tree/main/trabalho-4)
+
 ---
 
 ### Alunos
