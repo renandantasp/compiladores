@@ -1,0 +1,18 @@
+% - variaveis com o mesmo nome 
+% - variavel inexistente atribuida a campos de spell
+% - variavel de tipo errado sendo atribuido no campo 'SCHOOL'
+% - repetição de tag opcional
+
+
+decl:
+int a = 2;
+int a = 4;
+
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet.",
+    LEVEL: b,
+    SCHOOL: a,
+    COMP: V,
+    COMP: S
+}

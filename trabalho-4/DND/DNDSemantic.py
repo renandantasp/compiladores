@@ -70,6 +70,8 @@ class SemanticAnalyzer(DNDVisitor):
                 if v2 not in self.variables.keys():
                     self.err.writeError(f"Linha {ctx.start.line}: a variavel '{v2}' não existe.")
                     return
+                if mod == 1:
+                    return
                 if self.variables[v1]['type'] == self.variables[v2]['type']:
                     self.variables[v1]['value'] = self.variables[v2]['value']
                     return
@@ -130,7 +132,7 @@ class SemanticAnalyzer(DNDVisitor):
 
 
         if num_int < 1:
-            self.err.writeError(f"Linha {ctx.start.line}: valor de level não pode ser menor do que 0.")        
+            self.err.writeError(f"Linha {ctx.start.line}: valor de level não pode ser menor ou igual a 0.")        
         else:
             self.table[self.actual_scope].symbol['level'] = num_int
 
@@ -197,7 +199,7 @@ class SemanticAnalyzer(DNDVisitor):
             if ret > 0:
                 self.table[self.actual_scope].symbol['damage'] = str(ret) + ' ' + str(ctx.DICE())
                 return
-            self.err.writeError( f"Linha {ctx.start.line}: damage não pode ter um valor negativo.")
+            self.err.writeError( f"Linha {ctx.start.line}: valor de damage não pode ser menor ou igual a 0.")
 
     def visitDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
         if 'dmg_type' in self.table[self.actual_scope].symbol:

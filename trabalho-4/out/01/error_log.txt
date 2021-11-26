@@ -1,0 +1,4 @@
+Line 6: missing ';' at 'int'
+Line 8: missing ';' at 'def'
+Line 12: missing ',' at 'SCHOOL'
+Line 13: missing '}' at '<EOF>'

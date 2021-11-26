@@ -1,0 +1,12 @@
+% - falta de ';' nas declarações
+% - falta de ',' nas tags de spell
+
+decl:
+int a = 3
+int b = 2
+
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet.",
+    LEVEL: 1
+    SCHOOL: Abjuration

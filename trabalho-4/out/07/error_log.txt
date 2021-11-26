@@ -1,0 +1,9 @@
+Linha 9: variaveis inteiras não podem receber string.
+Linha 11: variaveis do tipo text não podem receber valores inteiros.
+Linha 12: variaveis do tipo school não podem receber valores inteiros.
+Linha 15: a variavel 'x' não existe.
+Linha 15: a variavel 'y' não existe.
+Linha 16: a variavel 'y' não existe.
+Linha 17: a variavel 'x' não existe.
+Linha 18: as variaveis 'numero' e 'texto' não são do mesmo tipo.
+Linha 19: as variaveis 'texto' e 'esc' não são do mesmo tipo.

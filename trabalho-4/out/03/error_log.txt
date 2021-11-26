@@ -1,0 +1,3 @@
+Line 7: missing ',' at 'LEVEL'
+Line 8: missing ',' at 'SCHOOL'
+Line 9: mismatched input 'COMP' expecting '}'

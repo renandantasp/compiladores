@@ -1,0 +1,26 @@
+% - variaveis do tipo int recebendo string
+% - variaveis do tipo 'text' e 'school' recebendo int
+% - atribuições com variaveis inexistentes
+% - atribuições com variaveis de tipo diferente
+
+
+decl:
+int numero = -2;
+int num = "dois";
+text texto = "text";
+text texto2 = 3;
+school escola = 3;
+school esc = "escola";
+
+x = y;
+numero = y;
+x = texto;
+numero = texto;
+texto = esc;
+
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet.",
+    LEVEL: 3,
+    SCHOOL: Evocation
+}

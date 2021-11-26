@@ -1,0 +1,4 @@
+Linha 9: não pode haver duas variaveis com o mesmo nome.
+Linha 14: variável passada não existe.
+Linha 15: campo school só pode receber variavel do tipo school. Passado: int.
+Linha 17: tag COMP já foi inserida.

@@ -1,0 +1,13 @@
+% - string aberta
+% - tags obrigatorias na ordem errada
+
+decl:
+text b = "3"
+text c = "bbbbbbb
+
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet.",
+    SCHOOL: Abjuration,
+    LEVEL: 1
+}

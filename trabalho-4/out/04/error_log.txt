@@ -1,0 +1,1 @@
+Linha 18: não pode haver dois spells com mesmo identificador.

@@ -1,0 +1,37 @@
+decl:
+int level = 5;
+text name = "Bola de Fogo";
+school escola = "Alquimia";
+text texto = "Lorem ipsum dolor sit amet.";
+text material = "pena de ganso";
+int cast_time = 1;
+int dmg = 5;
+text dmg_type = "Fogo";
+
+
+dmg = cast_time;
+level = 4;
+
+text texto2 = "Usuario lança uma esfera flamejante que causa intensas queimaduras.";
+texto = texto2;
+
+def custom {
+    NAME: name,
+    DESCR: texto,
+
+    LEVEL: level,
+    SCHOOL: escola,
+    DAMAGE: dmg D4,
+
+    CAST: cast_time Action,
+    COMP: V S M material,
+    DMG_TYPE: dmg_type
+}
+def aid {
+    NAME: "Aid",
+    DESCR: "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration.",
+    LEVEL: 2,
+    SCHOOL: Abjuration,
+    COMP: V S M "a tiny strip of white cloth"
+}
+

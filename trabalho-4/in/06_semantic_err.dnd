@@ -1,0 +1,17 @@
+% - variaveis com o mesmo nome 
+% - valor menor que 0 para level
+% - valor menor que 0 para damage
+
+
+decl:
+int a = -2;
+int b = -3;
+int a = 4;
+
+def spell{
+    NAME: "Magic Spell",
+    DESCR: "Lorem ipsum dolor sit amet.",
+    LEVEL: b,
+    SCHOOL: Evocation,
+    DAMAGE: b D8
+}

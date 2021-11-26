@@ -1,0 +1,3 @@
+Linha 9: não pode haver duas variaveis com o mesmo nome.
+Linha 14: valor de level não pode ser menor ou igual a 0.
+Linha 16: valor de damage não pode ser menor ou igual a 0.

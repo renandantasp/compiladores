@@ -69,8 +69,8 @@ NUM_INT	:
 STRING 	: 
 '"' ( ESC_SEQ | ~('"'|'\\'|'\n'|'\r') )* '"';
 
-OPEN_STRING 	: 
-'"' ~('"')* ('\n'|'\r')?;
+// OPEN_STRING 	: 
+// '"' ~('"')* ('\n'|'\r')?;
 
 fragment
 ESC_SEQ	: '\\\'';

@@ -1,6 +1,10 @@
+% - falta de virgula
+% - falta de STRING após M em COMP
+
 def spell{
     NAME: "Magic Spell",
     DESCR: "Lorem ipsum dolor sit amet."
-    LEVEL: 3,
+    LEVEL: 1
     SCHOOL: Abjuration
+    COMP: V S M 
 }

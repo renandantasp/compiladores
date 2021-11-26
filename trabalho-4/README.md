@@ -28,3 +28,16 @@ sudo pip install antlr4-python3-runtime==<versão do Antlr instalada>
 antlr4 -Dlanguage=python3 -visitor DND.g4
 ```
 
+### Utilizando a linguagem
+```
+python3 DND/DNDCompiler.py <arquivo> <pasta de saída>
+python3 DND/DNDCompiler.py <arquivo> #irá para uma pasta default chamada result
+```
+
+
+### Rodando Casos de Teste
+```
+chmod +x run
+./run
+```
+

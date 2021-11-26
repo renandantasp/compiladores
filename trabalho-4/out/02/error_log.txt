@@ -1,0 +1,4 @@
+Line 6: missing ';' at 'text'
+Line 8: mismatched input 'def' expecting {NUM_INT, STRING}
+Line 11: mismatched input 'SCHOOL' expecting 'LEVEL'
+Line 12: mismatched input 'LEVEL' expecting 'SCHOOL'

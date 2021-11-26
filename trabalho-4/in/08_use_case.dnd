@@ -6,7 +6,7 @@ text texto = "A shimmering green arrow streaks toward a target within range and 
 text material = "powdered rhubarb leaf and an adder’s stomach";
 int cast_time = 1;
 int dmg = 2;
-text dmg_type = "Acid"";
+text dmg_type = "Acid";
 
 
 def abi {
@@ -22,8 +22,8 @@ def abi {
 
 
 def acid {
-    NAME: "Acid Arrow",
-    DESCR: "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.",
+    NAME: name,
+    DESCR: texto,
 
     LEVEL: level,
     SCHOOL: escola,
@@ -34,7 +34,7 @@ def acid {
     DMG_TYPE: dmg_type
 }
 
-def novo_spell_2 {
+def absorb {
     NAME: "Absorb Elements",
     DESCR: "The spell captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the spell ends.",   
     LEVEL: 1,
