@@ -18,6 +18,7 @@ Os tipos existentes na linguagem são: `int` que recebe valores inteiros, `schoo
 ## 1.2 *Spells*
 
 ![image](spell_example.png)
+
 Cada *spell* é definido por quatro *tags* obrigatórias, sendo elas:
 - `NAME` - Nome do *spell* (pode ser uma variável do tipo `text`);
 - `LEVEL` - É o nível necessário para o personagem conseguir conjurar o *spell* (pode ser uma variável do tipo `int`);
