@@ -32,11 +32,13 @@ class SemanticAnalyzer(DNDVisitor):
             if self.variables[varname]['type'] == type:
                 return self.variables[varname]['value']
             else:
+                if type == 'int':
+                    return 'err1'
                 return -1
-                self.err.writeError(msg1)
         else:
+            if type == 'int':
+                return 'err2'
             return -2
-            self.err.writeError(msg2)
 
     def visitDecl(self, ctx:DNDParser.DeclContext):
         if str(ctx.IDENT()) in self.variables.keys():
@@ -85,7 +87,7 @@ class SemanticAnalyzer(DNDVisitor):
                 if self.variables[varname]['type'] == 'int':
                     num_int = self.variables[varname]['value']
                 else:
-                    self.err.writeError(f"Linha {ctx.start.line}: campo LEVEL só pode receber variavel do tipo int. Passado: {self.variables[varname]['type']}")        
+                    self.err.writeError(f"Linha {ctx.start.line}: campo LEVEL só pode receber variavel do tipo int. Passado: {self.variables[varname]['type']}.")        
                     return
             else:
                 self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
@@ -108,7 +110,7 @@ class SemanticAnalyzer(DNDVisitor):
             if self.variables[varname]['type'] == 'text':
                 self.table[self.actual_scope].symbol['name'] = self.variables[varname]['value']
             else:
-                self.err.writeError(f"Linha {ctx.start.line}: campo descr só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}")        
+                self.err.writeError(f"Linha {ctx.start.line}: campo descr só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}.")        
         else:
             self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")   
     
@@ -123,7 +125,7 @@ class SemanticAnalyzer(DNDVisitor):
             if var['type'] == 'school':
                 self.table[self.actual_scope].symbol['school'] = var['value']
             else:
-                self.err.writeError(f"Linha {ctx.start.line}: campo school só pode receber variavel do tipo school. Passado: {var['type']}")        
+                self.err.writeError(f"Linha {ctx.start.line}: campo school só pode receber variavel do tipo school. Passado: {var['type']}.")        
         else:
             self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
 
@@ -138,7 +140,7 @@ class SemanticAnalyzer(DNDVisitor):
             if self.variables[varname]['type'] == 'text':
                 self.table[self.actual_scope].symbol['descr'] = self.variables[varname]['value']
             else:
-                self.err.writeError(f"Linha {ctx.start.line}: campo descr só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}")        
+                self.err.writeError(f"Linha {ctx.start.line}: campo descr só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}.")        
         else:
             self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
         
@@ -151,14 +153,16 @@ class SemanticAnalyzer(DNDVisitor):
         else:
             varname = str(ctx.IDENT())
             ret = self.verifyVar(varname,'int')
-            if ret == -1:
+            if ret == 'err1':
                 self.err.writeError(f"Linha {ctx.start.line}: campo damage apenas aceita variavel do tipo int. Passado: {self.variables[varname]['type']}.")
                 return
-            if ret == -2:
+            if ret == 'err2':
                 self.err.writeError( f"Linha {ctx.start.line}: variável passada não existe.")
                 return
-
-            self.table[self.actual_scope].symbol['damage'] = str(ret) + ' ' + str(ctx.DICE())
+            if ret > 0:
+                self.table[self.actual_scope].symbol['damage'] = str(ret) + ' ' + str(ctx.DICE())
+                return
+            self.err.writeError( f"Linha {ctx.start.line}: damage não pode ter um valor negativo.")
 
     def visitDamage_type_tag(self, ctx:DNDParser.Damage_type_tagContext):
         if 'dmg_type' in self.table[self.actual_scope].symbol:
@@ -191,7 +195,7 @@ class SemanticAnalyzer(DNDVisitor):
                 if self.variables[varname]['type'] == 'int':
                     self.table[self.actual_scope].symbol['cast'] = str(self.variables[varname]['value']) + ' ' + str(ctx.CAST_TIME())
                 else:
-                    self.err.writeError(f"Linha {ctx.start.line}: Campo CAST só aceita variavel do tipo int. Passado: {self.variables[varname]['type']}")        
+                    self.err.writeError(f"Linha {ctx.start.line}: Campo CAST só aceita variavel do tipo int. Passado: {self.variables[varname]['type']}.")        
             else:
                 self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")
 
@@ -229,7 +233,7 @@ class SemanticAnalyzer(DNDVisitor):
                 if self.variables[varname]['type'] == 'text':
                     ret += " M" + " (" + str(self.variables[varname]['value']).replace("\"", "") + ")"
                 else:
-                    self.err.writeError(f"Linha {ctx.start.line}: Componente M só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}")        
+                    self.err.writeError(f"Linha {ctx.start.line}: Componente M só pode receber variavel do tipo text. Passado: {self.variables[varname]['type']}.")        
             else:
                 self.err.writeError(f"Linha {ctx.start.line}: variável passada não existe.")        
         return ret

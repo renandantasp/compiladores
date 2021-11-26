@@ -1,10 +1,12 @@
 body{
+    background: #23272a;
     margin-top: 0px;
     margin-left: 10vw;
     margin-right: 10vw;
 }
-h2{ font-family: 'Roboto Slab', serif; }
-p,span{ font-family: 'Roboto Condensed', sans-serif; }
+
+h2{ font-family: 'Roboto Slab', serif; color:#cfdbe6}
+p,span{ font-family: 'Roboto Condensed', sans-serif; color:#99aab5}
 p{font-weight: 400;}
 span{font-weight: 700;}
 .spell{
@@ -16,15 +18,25 @@ span{font-weight: 700;}
 }
 .flex{
     display: flex;
+    justify-content: space-around;
+    background: #2c2f33;
     padding:10px;
     flex-wrap: wrap;
-    border: 1px #aaaaaa solid;
+    border: 1px #36393f solid;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-top: 4px #6D28D9 solid;
+    border-top: 4px #888888 solid;
 }
 .item{
+    display: flex;
     padding-left: 4vw;
     padding-right: 4vw;
 }
 
+.Necromancy{
+    border-top-color: #9bd928 ;
+}
+
+.Abjuration{
+    border-top-color: #28cdd9 ;
+}
